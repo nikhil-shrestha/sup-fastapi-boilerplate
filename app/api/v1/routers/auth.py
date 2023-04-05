@@ -7,6 +7,7 @@ from app.core import security
 from app.core.config import settings
 from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
+from pydantic.networks import EmailStr
 from sqlalchemy.orm import Session
 
 router = APIRouter(prefix="/auth", tags=["auth"])
@@ -49,22 +50,36 @@ def login_access_token(
     }
 
 
+
 @router.post("/register", response_model=schemas.Token)
 def register(
     *,
     db: Session = Depends(deps.get_db),
-    user_in: schemas.UserCreate,
+    password: str = Body(...),
+    email: EmailStr = Body(...),
+    full_name: str = Body(...),
+    phone_number: str = Body(None),
 ) -> Any:
-
     """
-    Create new user.
+    Register new user.
     """
-    user = crud.user.get_by_email(db, email=user_in.email)
+    if not settings.USERS_OPEN_REGISTRATION:
+        raise HTTPException(
+            status_code=403,
+            detail="Open user registration is forbidden on this server",
+        )
+    user = crud.user.get_by_email(db, email=email)
     if user:
         raise HTTPException(
             status_code=409,
-            detail="The user with this username already exists in the system.",
+            detail="The user with this username already exists in the system",
         )
+    user_in = schemas.UserCreate(
+        password=password,
+        email=email,
+        full_name=full_name,
+        phone_number=phone_number,
+    )
     user = crud.user.create(db, obj_in=user_in)
     access_token_expires = timedelta(
         minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
@@ -84,8 +99,6 @@ def register(
         ),
         "token_type": "bearer",
     }
-
-
 
 @router.post("/test-token", response_model=schemas.User)
 def test_token(
