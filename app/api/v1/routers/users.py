@@ -100,6 +100,22 @@ def read_user_me(
     return user_data
 
 
+@router.get("/devices", response_model=List[schemas.UserDevice])
+def get_user_devices(
+    db: Session = Depends(deps.get_db),
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
+    """
+    Get current user devices.
+    """
+    devices = crud.user_device.get_by_user_id(db, user_id=current_user.id)
+    if not devices:
+        raise HTTPException(
+            status_code=404, detail="There is no devices assigned to this user",
+        )
+    return devices
+
+
 @router.get("/{user_id}", response_model=schemas.User)
 def read_user_by_id(
     user_id: int,
