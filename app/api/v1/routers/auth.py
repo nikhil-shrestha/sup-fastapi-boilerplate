@@ -4,6 +4,7 @@ from typing import Any
 from app import crud, models, schemas
 from app.api import deps
 from app.core import security
+from app.constants.role import Role
 from app.core.config import settings
 from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
@@ -30,18 +31,22 @@ def login_access_token(
         )
     elif not crud.user.is_active(user):
         raise HTTPException(status_code=400, detail="Inactive user")
+   
     access_token_expires = timedelta(
         minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
     )
+    
     if not user.user_role:
         role = "GUEST"
     else:
         role = user.user_role.role.name
+    
     token_payload = {
         "id": str(user.id),
         "role": role,
         "account_id": str(user.account_id),
     }
+    
     return {
         "access_token": security.create_access_token(
             token_payload, expires_delta=access_token_expires
@@ -58,6 +63,7 @@ def register(
     password: str = Body(...),
     email: EmailStr = Body(...),
     full_name: str = Body(...),
+    company_name: str = Body(...),
     phone_number: str = Body(None),
 ) -> Any:
     """
@@ -74,13 +80,36 @@ def register(
             status_code=409,
             detail="The user with this username already exists in the system",
         )
+
     user_in = schemas.UserCreate(
         password=password,
         email=email,
         full_name=full_name,
         phone_number=phone_number,
     )
+    
+    # create user
     user = crud.user.create(db, obj_in=user_in)
+
+    # get role
+    role = crud.role.get_by_name(db, name=Role.ACCOUNT_ADMIN)
+
+    # assign user_role
+    user_role_in = schemas.UserRoleCreate(
+        user_id=user.id,
+        role_id=role.id
+    )
+    user_role = crud.user_role.create(db, obj_in=user_role_in)
+
+
+    # create new account/company
+    if (company_name):
+        account_in = schemas.AccountCreate(name=company_name)
+        account = crud.account.create(db, obj_in=account_in)
+
+        user_in = schemas.UserUpdate(account_id=account.id)
+        updated_user = crud.user.update(db, db_obj=user, obj_in=user_in)
+
     access_token_expires = timedelta(
         minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
     )
