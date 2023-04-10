@@ -13,9 +13,9 @@ class Account(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), index=True, nullable=False)
     description = Column(String(255))
-    is_active = Column(Boolean(), default=True)
-    plan_id = Column(Integer, index=True)
-    current_subscription_ends = Column(DateTime)
+    # is_active = Column(Boolean(), default=True)
+    # plan_id = Column(Integer, index=True)
+    # current_subscription_ends = Column(DateTime)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     updated_at = Column(
         DateTime,
