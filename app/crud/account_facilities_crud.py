@@ -11,4 +11,4 @@ class CRUDAccountFacilities(CRUDBase[AccountFacilities, AccountFacilitiesCreate,
         return db.query(self.model).filter(AccountFacilities.account_id == account_id).first()
 
 
-account = CRUDAccountFacilities(AccountFacilities)
+account_facilities = CRUDAccountFacilities(AccountFacilities)

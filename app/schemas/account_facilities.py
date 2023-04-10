@@ -13,7 +13,7 @@ class AccountFacilitiesBase(BaseModel):
     no_of_devices: Optional[int]
     floor_plan_image_url: Optional[str]
     access_point_coordinates: Optional[dict]
-    no_of_access_point: Optional[int]
+    no_of_access_points: Optional[int]
     account_id: Optional[int]
 
 

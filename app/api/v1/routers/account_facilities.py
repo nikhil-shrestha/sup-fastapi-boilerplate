@@ -6,6 +6,9 @@ from app.constants.role import Role
 from fastapi import APIRouter, Body, Depends, HTTPException, Security
 from sqlalchemy.orm import Session
 
+import random
+import math
+
 router = APIRouter(prefix="/account-facilities", tags=["account-facilities"])
 
 
@@ -23,7 +26,7 @@ def list_account_facilities(
     """
     Retrieve all accounts.
     """
-    accounts = crud.account.get_multi(db, skip=skip, limit=limit)
+    accounts = crud.account_facilities.get_multi(db, skip=skip, limit=limit)
     return accounts
 
 
@@ -38,7 +41,7 @@ def get_account_facilities(
     """
     Retrieve account for a logged in user.
     """
-    account = crud.account.get(db, id=current_user.account_id)
+    account = crud.account_facilities.get(db, id=current_user.account_id)
     return account
 
 
@@ -67,14 +70,38 @@ def create_account(
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
-    Create an user account
+    Create an company facilites.
     """
-    account = crud.account.get_by_name(db, name=account_in.name)
-    if account:
-        raise HTTPException(
-            status_code=409, detail="An account with this name already exists",
-        )
-    account = crud.account.create(db, obj_in=account_in)
+    
+    random_number = random.randint(3, 10)
+    
+    center = (0, 0)
+    radius = 5
+
+    # Set the number of points to generate
+    num_points = 5
+
+    # Generate the specified number of random points such that the circles do not intersect
+    points = []
+    while len(points) < num_points:
+        x = random.uniform(center[0] - radius, center[0] + radius)
+        y = random.uniform(center[1] - radius, center[1] + radius)
+        is_valid_point = True
+        for p in points:
+            if math.sqrt((x - p[0]) ** 2 + (y - p[1]) ** 2) < 2 * radius:
+                is_valid_point = False
+                break
+        if is_valid_point:
+            points.append((x, y))
+
+    
+    account_facilities_in = schemas.AccountFacilitiesCreate(
+        **account_in, 
+        no_of_access_points=random_number,
+        access_points_coordinates=points
+    )
+    
+    account = crud.account_facilities.create(db, obj_in=account_facilities_in)
     return account
 
 
@@ -107,11 +134,11 @@ def update_account(
                     "update this account"
                 ),
             )
-    account = crud.account.get(db, id=account_id)
+    account = crud.account_facilities.get(db, id=account_id)
     if not account:
         raise HTTPException(
             status_code=404, detail="Account does not exist",
         )
-    account = crud.account.update(db, db_obj=account, obj_in=account_in)
+    account = crud.account_facilities.update(db, db_obj=account, obj_in=account_in)
     return account
 
