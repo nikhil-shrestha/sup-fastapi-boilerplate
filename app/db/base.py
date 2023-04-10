@@ -7,3 +7,4 @@ from app.models.user_role import UserRole  # noqa
 from app.models.account import Account  # noqa
 from app.models.device import Device  # noqa
 from app.models.user_device import UserDevice  # noqa
+from app.models.facility import Facility  # noqa
