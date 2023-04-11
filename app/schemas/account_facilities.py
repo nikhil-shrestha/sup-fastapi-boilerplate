@@ -12,9 +12,9 @@ class AccountFacilitiesBase(BaseModel):
     application_id: Optional[int]
     no_of_devices: Optional[int]
     floor_plan_image_url: Optional[str]
-    access_point_coordinates: Optional[dict]
-    no_of_access_points: Optional[int]
-    account_id: Optional[int]
+    access_point_coordinates: Optional[dict] = None
+    no_of_access_points: Optional[int] = None
+    account_id: Optional[int] = None
 
 
 # Properties to receive via API on creation

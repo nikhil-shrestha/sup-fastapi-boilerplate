@@ -11,7 +11,7 @@ class AccountFacilities(Base):
     """
     Database Model for an Account Facitlity
     """
-
+    __tablename__ = "account_facilities"
     id = Column(Integer, primary_key=True, index=True)
     no_of_devices = Column(Integer, default=0)
     floor_plan_image_url = Column(TEXT)
@@ -24,7 +24,7 @@ class AccountFacilities(Base):
         onupdate=datetime.datetime.utcnow,
     )
 
-    facility_id = Column(Integer, ForeignKey("facilities.id"), nullable=True)
-    application_id = Column(Integer, ForeignKey("applications.id"), nullable=True)
+    facility_id = Column(Integer, ForeignKey("facilities.id"), nullable=False)
+    application_id = Column(Integer, ForeignKey("applications.id"), nullable=False)
     account_id = Column(Integer, ForeignKey("accounts.id"), nullable=True)
 

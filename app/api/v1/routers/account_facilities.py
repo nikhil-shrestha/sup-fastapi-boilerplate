@@ -67,7 +67,6 @@ def create_account(
     *,
     db: Session = Depends(deps.get_db),
     account_in: schemas.AccountFacilitiesCreate,
-    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Create an company facilites.
@@ -79,27 +78,29 @@ def create_account(
     radius = 5
 
     # Set the number of points to generate
-    num_points = 5
+    # num_points = 5
 
     # Generate the specified number of random points such that the circles do not intersect
     points = []
-    while len(points) < num_points:
-        x = random.uniform(center[0] - radius, center[0] + radius)
-        y = random.uniform(center[1] - radius, center[1] + radius)
-        is_valid_point = True
-        for p in points:
-            if math.sqrt((x - p[0]) ** 2 + (y - p[1]) ** 2) < 2 * radius:
-                is_valid_point = False
-                break
-        if is_valid_point:
-            points.append((x, y))
+    # while len(points) < random_number:
+    #     x = random.uniform(center[0] - radius, center[0] + radius)
+    #     y = random.uniform(center[1] - radius, center[1] + radius)
+    #     is_valid_point = True
+    #     for p in points:
+    #         if math.sqrt((x - p[0]) ** 2 + (y - p[1]) ** 2) < 2 * radius:
+    #             is_valid_point = False
+    #             break
+    #     if is_valid_point:
+    #         points.append((x, y))
 
+    input_dict = account_in.dict()
     
-    account_facilities_in = schemas.AccountFacilitiesCreate(
-        **account_in, 
-        no_of_access_points=random_number,
-        access_points_coordinates=points
-    )
+    input_dict['no_of_access_points'] = random_number
+    input_dict['access_points_coordinates'] = points
+    
+    print(input_dict)
+    
+    account_facilities_in = schemas.AccountFacilitiesCreate(**input_dict)
     
     account = crud.account_facilities.create(db, obj_in=account_facilities_in)
     return account
