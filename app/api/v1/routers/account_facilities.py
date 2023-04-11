@@ -12,7 +12,7 @@ import math
 router = APIRouter(prefix="/account-facilities", tags=["account-facilities"])
 
 
-@router.get("", response_model=List[schemas.Account])
+@router.get("", response_model=List[schemas.AccountFacilities])
 def list_account_facilities(
     *,
     db: Session = Depends(deps.get_db),
@@ -45,7 +45,7 @@ def get_account_facilities(
     return account
 
 
-@router.get("/{id}", response_model=List[schemas.Account])
+@router.get("/{id}", response_model=List[schemas.AccountFacilities])
 def read_account_facilities_by_id(
     *,
     db: Session = Depends(deps.get_db),
