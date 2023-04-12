@@ -103,7 +103,7 @@ def get_account_access_point_by_serial_id(
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
-    Create an account
+    Retrive Account - Access Point by Serial ID
     """
     account = crud.account_access_point.get_by_serial_id(db, serial_id=serial_id)
 
@@ -118,7 +118,7 @@ def get_account_access_point_by_serial_id(
     return account
 
 @router.post("/deploy/{serial_id}", response_model=None)
-def get_account_access_point_by_serial_id(
+def deploy_access_point_by_serial_id(
     *,
     db: Session = Depends(deps.get_db),
     serial_id: str,
