@@ -28,10 +28,7 @@ def create_order(
     *,
     db: Session = Depends(deps.get_db),
     order_in: schemas.OrderInput,
-    current_user: models.User = Security(
-        deps.get_current_active_user,
-        scopes=[Role.ADMIN["name"], Role.SUPER_ADMIN["name"]],
-    ),
+    current_user: models.User = Security(deps.get_current_active_user,),
 ) -> Any:
     """
     Create a order.
@@ -42,7 +39,7 @@ def create_order(
     #         status_code=409, detail="An account with this name already exists",
     #     )
     new_order_in = schemas.OrderCreate(
-      account_id=order_in.account_id,
+      account_id=current_user.account_id,
     )
     order = crud.order.create(db, obj_in=new_order_in)
     
@@ -86,8 +83,7 @@ def update_order(
     """
     Update a order.
     """
-
-    order = crud.account.get(db, id=order_id)
+    order = crud.order.get(db, id=order_id)
     if not order:
         raise HTTPException(
             status_code=404, detail="order does not exist",
@@ -96,3 +92,20 @@ def update_order(
     return order
 
 
+@router.get("/users/me/all", response_model=List[schemas.Order])
+def retrieve_orders_for_own_account(
+    *,
+    db: Session = Depends(deps.get_db),
+    skip: int = 0,
+    limit: int = 100,
+    current_user: models.User = Security(deps.get_current_active_user),
+) -> Any:
+    """
+    Retrieve users for own account.
+    """
+    account = crud.order.list_by_account_id(db, account_id=current_user.account_id)
+    if not account:
+        raise HTTPException(
+            status_code=404, detail="Account Point does not exist",
+        )
+    return account

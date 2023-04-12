@@ -1,6 +1,6 @@
 from typing import Optional
 
-from app.schemas.role import Role
+from app.schemas.product import Product
 from pydantic import BaseModel
 
 
@@ -23,6 +23,7 @@ class OrderItemUpdate(BaseModel):
 
 class OrderItemInDBBase(OrderItemBase):
     id: int
+    product: Product
 
     class Config:
         orm_mode = True
