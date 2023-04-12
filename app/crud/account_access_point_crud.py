@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 
 class CRUDAccountAccessPoint(CRUDBase[AccountAccessPoint, AccountAccessPointCreate, AccountAccessPointUpdate]):
-    def get_by_account_id(self, db: Session, *, account_id: str) -> Optional[AccountAccessPoint]:
+    def list_by_account_id(self, db: Session, *, account_id: str) -> Optional[AccountAccessPoint]:
         return db.query(self.model).filter(AccountAccessPoint.account_id == account_id).all()
 
     def get_by_serial_id(self, db: Session, *, serial_id: str) -> Optional[AccountAccessPoint]:

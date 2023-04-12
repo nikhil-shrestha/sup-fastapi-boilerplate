@@ -60,8 +60,8 @@ def login_access_token(
 def register(
     *,
     db: Session = Depends(deps.get_db),
-    password: str = Body(...),
     email: EmailStr = Body(...),
+    password: str = Body(...),
     full_name: str = Body(...),
     company_name: str = Body(...),
     phone_number: str = Body(None),

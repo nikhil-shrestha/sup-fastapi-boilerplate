@@ -21,7 +21,7 @@ from app.utils.misc import get_random_string
 router = APIRouter(prefix="/account-ap", tags=["account_access_point"])
 
 
-@router.get("", response_model=List[schemas.Account])
+@router.get("", response_model=List[schemas.AccountAccessPoint])
 def get_account_access_point(
     *,
     db: Session = Depends(deps.get_db),
@@ -128,12 +128,22 @@ def deploy_access_point_by_serial_id(
     *,
     db: Session = Depends(deps.get_db),
     serial_id: str,
+    nr_band: str = Body(...),
+    epc_plmn: str = Body(...),
+    tx_gain: str = Body(...),
+    rx_gain: str = Body(...),
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Deploy an account
     """
     account = crud.account_access_point.get_by_serial_id(db, serial_id=serial_id)
+    
+    if not account:
+        raise HTTPException(
+            status_code=404,
+            detail="The Access Point with this serial_id does not exist in the system",
+        )
 
     if current_user.account_id != account.account_id:
         raise HTTPException(
@@ -142,10 +152,19 @@ def deploy_access_point_by_serial_id(
                 "This user does not have the permissions for this operation"
             ),
         )
+    
+    
+    accout_update_in = schemas.AccountAccessPointUpdate(
+        nr_band = nr_band,
+        epc_plmn = epc_plmn,
+        tx_gain = tx_gain
+    )
+    
+    account = crud.account_access_point.update(db, db_obj=account, obj_in=accout_update_in)
         
-    write_var_to_file(config_file="start_stop.py", variable_name="nr_band", variable_content=account.nr_band)
-    write_var_to_file(config_file="start_stop.py", variable_name="tx_gain", variable_content=account.tx_gain)
-    write_var_to_file(config_file="start_stop.py", variable_name="epc_plmn", variable_content=account.epc_plmn)
+    write_var_to_file(config_file="start_stop.py", variable_name="nr_band", variable_content=nr_band)
+    write_var_to_file(config_file="start_stop.py", variable_name="tx_gain", variable_content=tx_gain)
+    write_var_to_file(config_file="start_stop.py", variable_name="epc_plmn", variable_content=epc_plmn)
             
     print(subprocess.check_output('pwd'))
 
@@ -160,30 +179,20 @@ def deploy_access_point_by_serial_id(
 
 
 
-@router.get("/users/me", response_model=List[schemas.AccountAccessPoint])
+@router.get("/users/me/all", response_model=List[schemas.AccountAccessPoint])
 def retrieve_access_points_for_own_account(
     *,
     db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100,
-    current_user: models.User = Security(
-        deps.get_current_active_user,
-        scopes=[
-            Role.ADMIN["name"],
-            Role.SUPER_ADMIN["name"],
-            Role.ACCOUNT_ADMIN["name"],
-        ],
-    ),
+    current_user: models.User = Security(deps.get_current_active_user),
 ) -> Any:
     """
     Retrieve users for own account.
     """
-    account = crud.account_access_point.get(db, id=current_user.account_id)
+    account = crud.account_access_point.list_by_account_id(db, account_id=current_user.account_id)
     if not account:
         raise HTTPException(
-            status_code=404, detail="Account does not exist",
+            status_code=404, detail="Account Point does not exist",
         )
-    account_users = crud.user.get_by_account_id(
-        db, account_id=account.id, skip=skip, limit=limit
-    )
-    return account_users
+    return account
