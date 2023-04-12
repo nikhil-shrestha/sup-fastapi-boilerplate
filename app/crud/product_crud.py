@@ -11,4 +11,4 @@ class CRUDProduct(CRUDBase[Product, ProductCreate, ProductUpdate]):
         return db.query(self.model).filter(Product.name == name).first()
 
 
-Product = CRUDProduct(Product)
+product = CRUDProduct(Product)
