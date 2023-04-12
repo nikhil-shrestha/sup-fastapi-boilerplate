@@ -80,19 +80,26 @@ def register(
             status_code=409,
             detail="The user with this username already exists in the system",
         )
-
+        
     user_in = schemas.UserCreate(
-        password=password,
         email=email,
+        password=password,
         full_name=full_name,
         phone_number=phone_number,
     )
+    
+    # create new account/company
+    if (company_name):
+        account_in = schemas.AccountCreate(name=company_name)
+        account = crud.account.create(db, obj_in=account_in)
+        
+        user_in.account_id = account.id
     
     # create user
     user = crud.user.create(db, obj_in=user_in)
 
     # get role
-    role = crud.role.get_by_name(db, name=Role.ACCOUNT_ADMIN)
+    role = crud.role.get_by_name(db, name=Role.ACCOUNT_ADMIN["name"])
 
     # assign user_role
     user_role_in = schemas.UserRoleCreate(
@@ -101,15 +108,8 @@ def register(
     )
     user_role = crud.user_role.create(db, obj_in=user_role_in)
 
-
-    # create new account/company
-    if (company_name):
-        account_in = schemas.AccountCreate(name=company_name)
-        account = crud.account.create(db, obj_in=account_in)
-
-        user_in = schemas.UserUpdate(account_id=account.id)
-        updated_user = crud.user.update(db, db_obj=user, obj_in=user_in)
-
+    print(user)
+    
     access_token_expires = timedelta(
         minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
     )

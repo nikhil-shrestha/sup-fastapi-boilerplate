@@ -8,8 +8,6 @@ from pydantic import BaseModel
 class AccountBase(BaseModel):
     name: Optional[str]
     description: Optional[str]
-    plan_id: Optional[int]
-    is_active: Optional[bool] = True
 
 
 # Properties to receive via API on creation

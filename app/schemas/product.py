@@ -7,7 +7,11 @@ from pydantic import BaseModel
 # Shared properties
 class ProductBase(BaseModel):
     name: Optional[str] = None
+    desciprition: Optional[str] = None 
     price: Optional[int] = None
+    type: Optional[str] = None
+    link: Optional[str] = None
+    is_preview: Optional[bool] = False
     status: Optional[bool] = False
 
 # Properties to receive via API on creation
