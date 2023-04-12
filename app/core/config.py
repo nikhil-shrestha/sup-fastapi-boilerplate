@@ -5,7 +5,7 @@ from pydantic import BaseSettings, PostgresDsn, validator
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "Dolcera FastAPI Service"
+    PROJECT_NAME: str = "5-fi FastAPI Service"
     API_V1_STR: str = "/api/v1"
     SECRET_KEY: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int

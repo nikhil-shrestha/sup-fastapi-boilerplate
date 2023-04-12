@@ -9,3 +9,4 @@ from .user_device import UserDevice, UserDeviceCreate, UserDeviceInDB, UserDevic
 from .facility import Facility, FacilityCreate, FacilityInDB, FacilityUpdate
 from .application import Application, ApplicationCreate, ApplicationInDB, ApplicationUpdate
 from .account_facilities import AccountFacilities, AccountFacilitiesCreate, AccountFacilitiesInDB, AccountFacilitiesUpdate
+from .product import Product, ProductCreate, ProductInDB, ProductUpdate
