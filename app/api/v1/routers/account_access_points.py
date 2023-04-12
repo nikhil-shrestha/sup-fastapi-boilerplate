@@ -1,6 +1,7 @@
 from typing import Any, List
-
+import uuid
 import requests
+import time
 import qrcode
 
 from app import crud, models, schemas
@@ -84,7 +85,11 @@ def create_account_access_point(
     img = qrcode.make(serial_num)
     
     # Saving as an image file
-    img.save('MyQRCode1.png')
+    
+    filename = str(uuid.uuid4())
+    filepath = f'/static/{filename}.png'
+    img.save(filepath)
+    account_ap_in.qr_code = filepath
         
     account = crud.account_access_point.create(db, obj_in=account_ap_in)
     return account
@@ -95,13 +100,46 @@ def get_account_access_point_by_serial_id(
     *,
     db: Session = Depends(deps.get_db),
     serial_id: str,
-    # current_user: models.User = Depends(deps.get_current_active_user),
+    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Create an account
     """
     account = crud.account_access_point.get_by_serial_id(db, serial_id=serial_id)
+
+    if current_user.account_id != account.account_id:
+        raise HTTPException(
+            status_code=401,
+            detail=(
+                "This user does not have the permissions for this operation"
+            ),
+        )
+            
     return account
+
+@router.post("/deploy/{serial_id}", response_model=schemas.AccountAccessPoint)
+def get_account_access_point_by_serial_id(
+    *,
+    db: Session = Depends(deps.get_db),
+    serial_id: str,
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
+    """
+    Deploy an account
+    """
+    account = crud.account_access_point.get_by_serial_id(db, serial_id=serial_id)
+
+    if current_user.account_id != account.account_id:
+        raise HTTPException(
+            status_code=401,
+            detail=(
+                "This user does not have the permissions for this operation"
+            ),
+        )
+        
+    time.sleep(8)
+            
+    return f"Deployed Successfully AP {account.serial_id} with Gain of {account.rx_gain}"
 
 
 
