@@ -87,7 +87,7 @@ def create_account_access_point(
     # Saving as an image file
     
     filename = str(uuid.uuid4())
-    filepath = f'/static/{filename}.png'
+    filepath = f'static/{filename}.png'
     img.save(filepath)
     account_ap_in.qr_code = filepath
         
@@ -117,7 +117,7 @@ def get_account_access_point_by_serial_id(
             
     return account
 
-@router.post("/deploy/{serial_id}", response_model=schemas.AccountAccessPoint)
+@router.post("/deploy/{serial_id}", response_model=None)
 def get_account_access_point_by_serial_id(
     *,
     db: Session = Depends(deps.get_db),
@@ -139,7 +139,7 @@ def get_account_access_point_by_serial_id(
         
     time.sleep(8)
             
-    return f"Deployed Successfully AP {account.serial_id} with Gain of {account.rx_gain}"
+    return { "message": f"Deployed Successfully AP {account.serial_id} with Gain of {account.rx_gain}" }
 
 
 
