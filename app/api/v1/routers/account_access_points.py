@@ -1,14 +1,20 @@
-from typing import Any, List
+import os
+import subprocess
 import uuid
-import requests
 import time
+import requests
 import qrcode
+
+from typing import Any, List
+
 
 from app import crud, models, schemas
 from app.api import deps
 from app.constants.role import Role
 from fastapi import APIRouter, Body, Depends, HTTPException, Security
 from sqlalchemy.orm import Session
+
+from app.api.v1.routers.networks import write_var_to_file
 
 from app.utils.misc import get_random_string
 
@@ -137,7 +143,18 @@ def deploy_access_point_by_serial_id(
             ),
         )
         
-    time.sleep(8)
+    write_var_to_file(config_file="start_stop.py", variable_name="nr_band", variable_content=account.nr_band)
+    write_var_to_file(config_file="start_stop.py", variable_name="tx_gain", variable_content=account.tx_gain)
+    write_var_to_file(config_file="start_stop.py", variable_name="epc_plmn", variable_content=account.epc_plmn)
+            
+    print(subprocess.check_output('pwd'))
+
+    command = "sudo su -c 'slapos console --cfg ~/.slapos/slapos-client.cfg /home/dolcera/5Fi_APIs/Deploy-APIs/start_stop.py'"
+
+    ret = os.system(command)#subprocess.run(command, capture_output=True, shell=True)
+
+    print(ret)
+    # result =  f'Deployed Sucessfully with Gain {Sel_Gain}'
             
     return { "message": f"Deployed Successfully AP {account.serial_id} with Gain of {account.rx_gain}" }
 
