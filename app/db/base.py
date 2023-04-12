@@ -11,3 +11,5 @@ from app.models.facility import Facility  # noqa
 from app.models.application import Application  # noqa
 from app.models.account_facilities import AccountFacilities  # noqa
 from app.models.product import Product  # noqa
+from app.models.order import Order  # noqa
+from app.models.order_item import OrderItem  # noqa
