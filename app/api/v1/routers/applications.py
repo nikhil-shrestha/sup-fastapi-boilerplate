@@ -74,7 +74,7 @@ def update_application(
     Update a application.
     """
 
-    application = crud.account.get(db, id=application_id)
+    application = crud.application.get(db, id=application_id)
     if not application:
         raise HTTPException(
             status_code=404, detail="application does not exist",

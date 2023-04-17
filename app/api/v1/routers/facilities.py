@@ -74,7 +74,7 @@ def update_facility(
     Update a facility.
     """
 
-    facility = crud.account.get(db, id=facility_id)
+    facility = crud.facility.get(db, id=facility_id)
     if not facility:
         raise HTTPException(
             status_code=404, detail="facility does not exist",

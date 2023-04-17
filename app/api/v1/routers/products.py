@@ -74,7 +74,7 @@ def update_product(
     Update a product.
     """
 
-    product = crud.account.get(db, id=product_id)
+    product = crud.product.get(db, id=product_id)
     if not product:
         raise HTTPException(
             status_code=404, detail="Product does not exist",
