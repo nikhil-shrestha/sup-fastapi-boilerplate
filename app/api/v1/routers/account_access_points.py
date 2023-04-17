@@ -86,9 +86,11 @@ def create_account_access_point(
       account_ap_in.tx_gain = tx_gain
       account_ap_in.rx_gain = rx_gain
       
+    
+    url = "https://5fi-new.vercel.app/add-ap/?serial_id=" + serial_num
 
     # Encoding data using make() function
-    img = qrcode.make(serial_num)
+    img = qrcode.make(url)
     
     # Saving as an image file
     
