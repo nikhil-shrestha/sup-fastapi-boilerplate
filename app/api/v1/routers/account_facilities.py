@@ -67,6 +67,7 @@ def create_account(
     *,
     db: Session = Depends(deps.get_db),
     account_in: schemas.AccountFacilitiesCreate,
+    current_user: models.User = Security(deps.get_current_active_user,),
 ) -> Any:
     """
     Create an company facilites.
@@ -97,7 +98,8 @@ def create_account(
     
     input_dict['no_of_access_points'] = random_number
     input_dict['access_points_coordinates'] = points
-    
+    input_dict['account_id'] = current_user.account_id
+
     print(input_dict)
     
     account_facilities_in = schemas.AccountFacilitiesCreate(**input_dict)
