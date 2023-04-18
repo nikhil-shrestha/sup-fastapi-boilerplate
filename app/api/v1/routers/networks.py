@@ -22,16 +22,16 @@ def get_CN_details(
     """
     items = [
         {
-            "id": "buildout-slappart0-status",
-            "url":  "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/buildout-slappart0-status.log"
+            "id": "check-interface-up",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/check-interface-up.log"
         },
         {
-            "id": "check-amarisoft-stats-log",
-            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/check-amarisoft-stats-log.log"
+            "id": "check-free-disk-space",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/check-free-disk-space.log"
         },
         {
-            "id": "check-baseband-latency",
-            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/check-baseband-latency.log",
+            "id": "buildout-slappart15-status",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/buildout-slappart15-status.log"
         },
         {
             "id": "monitor-bootstrap-status",
