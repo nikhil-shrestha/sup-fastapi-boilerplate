@@ -89,7 +89,7 @@ def get_CN_details(
         print("No errors found")
         # Do something if no errors are found
         
-    return { "count": 1 }
+    return { "count": 1, "message": responses }
 
 
 @router.get("/ran_details")
@@ -183,7 +183,7 @@ def get_RAN_details(
         # Do something if no errors are found
 
 
-    return { "count": 1 }
+    return { "count": 1, "message": responses }
 
 
 @router.get("/cn_monitor_log")
