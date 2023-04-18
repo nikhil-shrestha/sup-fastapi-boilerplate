@@ -74,6 +74,17 @@ def get_CN_details(
             result_dict['message'] = e
             responses.append(result_dict)
 
+    # Loop over each object and check its status
+    for obj in results:
+        if obj['status'] == 'ERROR':
+            print(f"Found error in {obj['name']} - {obj['message']}")
+            # Do something if an error is found
+            raise HTTPException(status_code=404, detail=obj['message'])
+            break
+    else:
+        print("No errors found")
+        # Do something if no errors are found
+        
     return results
 
 
