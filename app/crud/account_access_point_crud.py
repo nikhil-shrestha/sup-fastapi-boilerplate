@@ -10,6 +10,9 @@ class CRUDAccountAccessPoint(CRUDBase[AccountAccessPoint, AccountAccessPointCrea
     def list_by_account_id(self, db: Session, *, account_id: str) -> Optional[AccountAccessPoint]:
         return db.query(self.model).filter(AccountAccessPoint.account_id == account_id).all()
 
+    def get_by_account_id(self, db: Session, *, account_id: str) -> Optional[AccountAccessPoint]:
+        return db.query(self.model).filter(AccountAccessPoint.account_id == account_id).first()
+    
     def get_by_serial_id(self, db: Session, *, serial_id: str) -> Optional[AccountAccessPoint]:
         return db.query(self.model).filter(AccountAccessPoint.serial_id == serial_id).first()
 

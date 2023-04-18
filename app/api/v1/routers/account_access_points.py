@@ -176,6 +176,8 @@ def deploy_access_point_by_serial_id(
 
     print(ret)
     # result =  f'Deployed Sucessfully with Gain {Sel_Gain}'
+    
+    
             
     return { "message": f"Deployed Successfully AP {account.serial_id} with Gain of {account.rx_gain}" }
 
@@ -192,7 +194,7 @@ def retrieve_access_points_for_own_account(
     """
     Retrieve users for own account.
     """
-    account = crud.account_access_point.list_by_account_id(db, account_id=current_user.account_id)
+    account = crud.account_access_point.get(db, account_id=current_user.account_id)
     if not account:
         raise HTTPException(
             status_code=404, detail="Account Point does not exist",

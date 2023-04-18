@@ -239,6 +239,13 @@ def get_RAN_monitor_log(
     except Exception as e:
         print(e)
         raise HTTPException(status_code=404, detail=e)
+    
+    account_ap = crud.account_access_point.get_by_account_id(db, account_id=current_user.account_id)
+    
+    num1 = account_ap.id.zfill(3)
+    num2 = account_ap.ap_id.zfill(3)
+    
+    response['ap'] = num1 + num2    
 
     return response
 
