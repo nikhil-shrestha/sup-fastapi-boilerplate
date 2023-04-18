@@ -54,7 +54,7 @@ def get_CN_details(
         try:
             response = read_from_url(item['url'])
             
-            result = [x.strip() for x in response.split('-')]
+            result = [x.strip() for x in response.split(' - ')]
             
             info = {}
             info['description'] = item['id']
@@ -131,7 +131,7 @@ def get_RAN_details(
         try:
             response = read_from_url(item['url'])
             
-            result = [x.strip() for x in response.split('-')]
+            result = [x.strip() for x in response.split(' - ')]
             
             info = {}
             info['description'] = item['id']
