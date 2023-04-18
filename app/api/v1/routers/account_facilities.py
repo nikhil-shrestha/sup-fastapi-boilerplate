@@ -96,7 +96,7 @@ def create_account(
 
     input_dict = account_in.dict()
     
-    input_dict['no_of_access_points'] = random_number
+    input_dict['no_of_access_points'] = 5
     input_dict['access_points_coordinates'] = points
     input_dict['account_id'] = current_user.account_id
 
