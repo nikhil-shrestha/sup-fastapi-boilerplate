@@ -23,6 +23,11 @@ def get_CN_details(
     """
     if not current_user.account_id:
         raise HTTPException(status_code=404, detail="Account not found")
+    
+    ap_devices = crud.account_access_point.list_by_account_id(db, account_id=current_user.account_id)
+    
+    if not ap_devices:
+        raise HTTPException(status_code=404, detail="No AP devices found")
         
     items = [
         {
@@ -103,6 +108,11 @@ def get_RAN_details(
     """
     if not current_user.account_id:
         raise HTTPException(status_code=404, detail="Account not found")
+    
+    ap_devices = crud.account_access_point.list_by_account_id(db, account_id=current_user.account_id)
+    
+    if not ap_devices:
+        raise HTTPException(status_code=404, detail="No AP devices found")
     
     items = [
         {
@@ -198,6 +208,11 @@ def get_CN_monitor_log(
     if not current_user.account_id:
         raise HTTPException(status_code=404, detail="Account not found")
     
+    ap_devices = crud.account_access_point.list_by_account_id(db, account_id=current_user.account_id)
+    
+    if not ap_devices:
+        raise HTTPException(status_code=404, detail="No AP devices found")
+    
     url = "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor-httpd-error.log"
     
     response = {}
@@ -225,6 +240,11 @@ def get_RAN_monitor_log(
     """
     if not current_user.account_id:
         raise HTTPException(status_code=404, detail="Account not found")
+    
+    ap_devices = crud.account_access_point.list_by_account_id(db, account_id=current_user.account_id)
+    
+    if not ap_devices:
+        raise HTTPException(status_code=404, detail="No AP devices found")
     
     url = "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor-httpd-error.log"
     
