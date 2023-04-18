@@ -28,6 +28,7 @@ class AccountAccessPoint(Base):
     tx_gain = Column(String(255), nullable=True)
     rx_gain = Column(String(255), nullable=True)
     epc_plmn = Column(String(255), nullable=True)
+    status = Column(String(255), nullable=True)
     
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     updated_at = Column(

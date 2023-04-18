@@ -28,7 +28,7 @@ class AccountAccessPointCreate(AccountAccessPointBase):
 
 # Properties to receive via API on update
 class AccountAccessPointUpdate(AccountAccessPointBase):
-    pass
+    status: Optional[str] = None
 
 
 class AccountAccessPointInDBBase(AccountAccessPointBase):
@@ -42,6 +42,7 @@ class AccountAccessPointInDBBase(AccountAccessPointBase):
     tx_gain: Optional[str]
     rx_gain: Optional[str]
     epc_plmn: Optional[str]
+    status: Optional[str]
     created_at: datetime
     updated_at: datetime
 

@@ -27,6 +27,7 @@ class UserUpdate(UserBase):
 class UserInDBBase(UserBase):
     id: int
     user_role: Optional[UserRole]
+    last_login: Optional[datetime]
     created_at: datetime
     updated_at: datetime
 
