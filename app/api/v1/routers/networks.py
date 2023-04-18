@@ -47,15 +47,25 @@ def get_CN_details(
         }
     ]
     
+    responses = []
     results = []
     
     for item in items:
         response = read_from_url(item['url'])
         
-        result = {}
-        result['description'] = item['id']
-        result['message'] = response
-        results.append(result)
+        result = [x.strip() for x in response.split('-')]
+        
+        info = {}
+        info['description'] = item['id']
+        info['time'] = result[0]
+        info['status'] = result[1]
+        info['message'] = result[3]
+        results.append(info)
+        
+        result_dict = {}
+        result_dict['description'] = item['id']
+        result_dict['message'] = response
+        responses.append(result_dict)
 
     return results
 
@@ -107,15 +117,26 @@ def get_RAN_details(
         }
     ]
     
+    responses = []
     results = []
     
     for item in items:
         response = read_from_url(item['url'])
         
-        result = {}
-        result['description'] = item['id']
-        result['message'] = response
-        results.append(result)
+        result = [x.strip() for x in response.split('-')]
+        
+        info = {}
+        info['description'] = item['id']
+        info['time'] = result[0]
+        info['status'] = result[1]
+        info['message'] = result[3]
+        results.append(info)
+        
+        result_dict = {}
+        result_dict['description'] = item['id']
+        result_dict['message'] = response
+        responses.append(result_dict)
+
 
     return results
 
