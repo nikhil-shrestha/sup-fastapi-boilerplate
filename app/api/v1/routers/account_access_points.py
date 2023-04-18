@@ -72,19 +72,19 @@ def create_account_access_point(
     account_ap_in.serial_id = serial_num
     
     if product.link:
-      response = requests.get(product.link) # default configuration
-      data = response.json()
-      print(data)
-      epc_plmn = data["properties"]["epc_plmn"]["default"]
-      tx_gain = data["properties"]["tx_gain"]["default"]
-      rx_gain = data["properties"]["rx_gain"]["default"]
-      nr_band = data["properties"]["nr_band"]["default"]
-      nr_bandwidth = data["properties"]["nr_bandwidth"]["default"]
-      account_ap_in.nr_band = nr_band
-      account_ap_in.nr_bandwidth = nr_bandwidth
-      account_ap_in.epc_plmn = epc_plmn
-      account_ap_in.tx_gain = tx_gain
-      account_ap_in.rx_gain = rx_gain
+        response = requests.get(product.link) # default configuration
+        data = response.json()
+        print(data)
+        epc_plmn = data["properties"]["epc_plmn"]["default"]
+        tx_gain = data["properties"]["tx_gain"]["default"]
+        rx_gain = data["properties"]["rx_gain"]["default"]
+        nr_band = data["properties"]["nr_band"]["default"]
+        nr_bandwidth = data["properties"]["nr_bandwidth"]["default"]
+        account_ap_in.nr_band = nr_band
+        account_ap_in.nr_bandwidth = nr_bandwidth
+        account_ap_in.epc_plmn = epc_plmn
+        account_ap_in.tx_gain = tx_gain
+        account_ap_in.rx_gain = rx_gain
       
     
     url = "https://5fi-new.vercel.app/#/add-ap/?serial=" + serial_num
@@ -159,7 +159,8 @@ def deploy_access_point_by_serial_id(
     accout_update_in = schemas.AccountAccessPointUpdate(
         nr_band = nr_band,
         epc_plmn = epc_plmn,
-        tx_gain = tx_gain
+        tx_gain = tx_gain,
+        status = "pending"
     )
     
     account = crud.account_access_point.update(db, db_obj=account, obj_in=accout_update_in)
