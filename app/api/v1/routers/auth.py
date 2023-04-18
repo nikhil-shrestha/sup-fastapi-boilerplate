@@ -36,8 +36,8 @@ def login_access_token(
         minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
     )
     
-    user_in: schemas.UserUpdate(
-        last_login = datetime.now()
+    user_in = schemas.UserUpdate(
+        last_login=datetime.now()
     )
     user = crud.user.update(db, db_obj=user, obj_in=user_in)
     

@@ -16,10 +16,14 @@ router = APIRouter(prefix="/networks", tags=["networks"])
 def get_CN_details(
     *,
     db: Session = Depends(deps.get_db),
+    current_user: models.User = Security(deps.get_current_active_user),
 ) -> Any:
     """
     Get CN details
     """
+    if not current_user.account_id:
+        raise HTTPException(status_code=404, detail="Account not found")
+        
     items = [
         {
             "id": "check-interface-up",
@@ -85,17 +89,21 @@ def get_CN_details(
         print("No errors found")
         # Do something if no errors are found
         
-    return results
+    return { "count": 1 }
 
 
 @router.get("/ran_details")
 def get_RAN_details(
     *,
     db: Session = Depends(deps.get_db),
+    current_user: models.User = Security(deps.get_current_active_user),
 ) -> Any:
     """
-    Get CN details
+    Get RAN details
     """
+    if not current_user.account_id:
+        raise HTTPException(status_code=404, detail="Account not found")
+    
     items = [
         {
             "id": "buildout-slappart0-status",
@@ -175,18 +183,84 @@ def get_RAN_details(
         # Do something if no errors are found
 
 
-    return results
+    return { "count": 1 }
 
-def read_from_url(url):
-    response = requests.get(url)
+
+@router.get("/cn_monitor_log")
+def get_CN_monitor_log(
+    *,
+    db: Session = Depends(deps.get_db),
+    current_user: models.User = Security(deps.get_current_active_user),
+) -> Any:
+    """
+    Get CN monitor log
+    """
+    if not current_user.account_id:
+        raise HTTPException(status_code=404, detail="Account not found")
+    
+    url = "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor-httpd-error.log"
+    
+    response = {}
+    
+    try:
+        response = read_from_url(url)
+        result = [x.strip() for x in response.split(":")]
+        response = {}
+        response['message'] = result[1]
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=404, detail=e)
+
+    return response
+
+
+@router.get("/ran_monitor_log")
+def get_RAN_monitor_log(
+    *,
+    db: Session = Depends(deps.get_db),
+    current_user: models.User = Security(deps.get_current_active_user),
+) -> Any:
+    """
+    Get RAN monitor log
+    """
+    if not current_user.account_id:
+        raise HTTPException(status_code=404, detail="Account not found")
+    
+    url = "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor-httpd-error.log"
+    
+    response = {}
+    
+    try:
+        response = read_from_url(url)
+        result = [x.strip() for x in response.split(":")]
+        print(result)
+        response = {}
+        response['message'] = result[1]
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=404, detail=e)
+
+    return response
+
+def read_from_url(url, stream=False):
+    response = requests.get(url, stream=stream)
     
     if response.status_code == 200:
-        # Split the response content into lines and get the last line
-        lines = response.content.strip().split(b'\n')
-        last_line = lines[-1].decode()
-        # do something with the last line
-        print(last_line)
-        return last_line
+        if stream:
+            dict = []
+            for line in response.iter_lines():
+                if line:
+                    # do something with the line
+                    print(line)
+                    dict.append(line)
+            return dict
+        else:
+            # Split the response content into lines and get the last line
+            lines = response.content.strip().split(b'\n')
+            last_line = lines[-1].decode()
+            # do something with the last line
+            print(last_line)
+            return last_line
     else:
         print(f'Failed to read file from URL: {url}')
         raise Exception(f'Failed to read file from URL: {url}')
