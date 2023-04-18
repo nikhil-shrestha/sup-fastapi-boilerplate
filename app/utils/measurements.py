@@ -24,6 +24,7 @@ def get_num_servedUEs(client,id):
     st = 'Total number of UEs'
     res = logs.rfind(st)
     return logs[res+21]
+
 def kill_meas_collection():
     global stop
     stop=1
