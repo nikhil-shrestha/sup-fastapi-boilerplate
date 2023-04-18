@@ -7,6 +7,7 @@ from pydantic import BaseModel
 # Shared properties
 class FacilityBase(BaseModel):
     name: Optional[str] = None
+    icon_url: Optional[str] = None
     is_preview: Optional[bool] = False
     is_other: Optional[bool] = False
 
