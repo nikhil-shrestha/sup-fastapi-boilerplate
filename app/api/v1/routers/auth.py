@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import timedelta, datetime
 from typing import Any
 
 from app import crud, models, schemas
@@ -35,6 +35,11 @@ def login_access_token(
     access_token_expires = timedelta(
         minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
     )
+    
+    user_in: schemas.UserUpdate(
+        last_login = datetime.now()
+    )
+    user = crud.user.update(db, db_obj=user, obj_in=user_in)
     
     if not user.user_role:
         role = "GUEST"

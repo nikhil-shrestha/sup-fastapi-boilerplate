@@ -21,7 +21,7 @@ class UserCreate(UserBase):
 
 # Properties to receive via API on update
 class UserUpdate(UserBase):
-    pass
+    last_login: Optional[datetime] = None
 
 
 class UserInDBBase(UserBase):
