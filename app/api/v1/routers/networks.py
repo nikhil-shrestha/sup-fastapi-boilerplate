@@ -51,21 +51,28 @@ def get_CN_details(
     results = []
     
     for item in items:
-        response = read_from_url(item['url'])
-        
-        result = [x.strip() for x in response.split('-')]
-        
-        info = {}
-        info['description'] = item['id']
-        info['time'] = result[0]
-        info['status'] = result[1]
-        info['message'] = result[3]
-        results.append(info)
-        
-        result_dict = {}
-        result_dict['description'] = item['id']
-        result_dict['message'] = response
-        responses.append(result_dict)
+        try:
+            response = read_from_url(item['url'])
+            
+            result = [x.strip() for x in response.split('-')]
+            
+            info = {}
+            info['description'] = item['id']
+            info['time'] = result[0]
+            info['status'] = result[1]
+            info['message'] = result[3]
+            results.append(info)
+            
+            result_dict = {}
+            result_dict['description'] = item['id']
+            result_dict['message'] = response
+            responses.append(result_dict)
+        except Exception as e:
+            print(e)
+            result_dict = {}
+            result_dict['description'] = item['id']
+            result_dict['message'] = e
+            responses.append(result_dict)
 
     return results
 
@@ -121,21 +128,40 @@ def get_RAN_details(
     results = []
     
     for item in items:
-        response = read_from_url(item['url'])
-        
-        result = [x.strip() for x in response.split('-')]
-        
-        info = {}
-        info['description'] = item['id']
-        info['time'] = result[0]
-        info['status'] = result[1]
-        info['message'] = result[3]
-        results.append(info)
-        
-        result_dict = {}
-        result_dict['description'] = item['id']
-        result_dict['message'] = response
-        responses.append(result_dict)
+        try:
+            response = read_from_url(item['url'])
+            
+            result = [x.strip() for x in response.split('-')]
+            
+            info = {}
+            info['description'] = item['id']
+            info['time'] = result[0]
+            info['status'] = result[1]
+            info['message'] = result[3]
+            results.append(info)
+            
+            result_dict = {}
+            result_dict['description'] = item['id']
+            result_dict['message'] = response
+            responses.append(result_dict)
+        except Exception as e:
+            print(e)
+            result_dict = {}
+            result_dict['description'] = item['id']
+            result_dict['message'] = e
+            responses.append(result_dict)
+
+
+    # Loop over each object and check its status
+    for obj in results:
+        if obj['status'] == 'ERROR':
+            print(f"Found error in {obj['name']} - {obj['message']}")
+            # Do something if an error is found
+            raise HTTPException(status_code=404, detail=obj['message'])
+            break
+    else:
+        print("No errors found")
+        # Do something if no errors are found
 
 
     return results
@@ -143,8 +169,6 @@ def get_RAN_details(
 def read_from_url(url):
     response = requests.get(url)
     
-    
-
     if response.status_code == 200:
         # Split the response content into lines and get the last line
         lines = response.content.strip().split(b'\n')
@@ -154,7 +178,7 @@ def read_from_url(url):
         return last_line
     else:
         print(f'Failed to read file from URL: {url}')
-        return f'Failed to read file from URL: {url}'
+        raise Exception(f'Failed to read file from URL: {url}')
     
     
 
