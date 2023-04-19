@@ -200,7 +200,7 @@ def retrieve_access_points_for_own_account(
     """
     Retrieve users for own account.
     """
-    account = crud.account_access_point.get(db, account_id=current_user.account_id)
+    account = crud.account_access_point.list_by_account_id(db, account_id=current_user.account_id)
     if not account:
         raise HTTPException(
             status_code=404, detail="Account Point does not exist",

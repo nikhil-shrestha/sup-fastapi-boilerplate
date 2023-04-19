@@ -221,7 +221,10 @@ def get_CN_monitor_log(
         response = read_from_url(url)
         result = [x.strip() for x in response.split(":")]
         response = {}
-        response['message'] = result[1]
+        rslt = [x.strip() for x in result[4].split()]
+        print(rslt)
+        # response['switch'] = rslt[4]
+        response['message'] = result[5]
     except Exception as e:
         print(e)
         raise HTTPException(status_code=404, detail=e)
@@ -255,15 +258,19 @@ def get_RAN_monitor_log(
         result = [x.strip() for x in response.split(":")]
         print(result)
         response = {}
-        response['message'] = result[1]
+        rslt = [x.strip() for x in result[4].split()]
+        print(rslt)
+        # response['switch'] = rslt[4]
+        response['message'] = result[5]
     except Exception as e:
         print(e)
         raise HTTPException(status_code=404, detail=e)
     
     account_ap = crud.account_access_point.get_by_account_id(db, account_id=current_user.account_id)
     
-    num1 = account_ap.id.zfill(3)
-    num2 = account_ap.ap_id.zfill(3)
+    
+    num1 = f"{account_ap.id:03d}"
+    num2 = f"{account_ap.ap_id:03d}"
     
     response['ap'] = num1 + num2    
 
