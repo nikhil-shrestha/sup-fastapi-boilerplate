@@ -223,7 +223,7 @@ def get_CN_monitor_log(
         response = {}
         rslt = [x.strip() for x in result[4].split()]
         print(rslt)
-        # response['switch'] = rslt[4]
+        response['switch'] = rslt[2]
         response['message'] = result[5]
     except Exception as e:
         print(e)
@@ -260,7 +260,7 @@ def get_RAN_monitor_log(
         response = {}
         rslt = [x.strip() for x in result[4].split()]
         print(rslt)
-        # response['switch'] = rslt[4]
+        response['switch'] = rslt[2]
         response['message'] = result[5]
     except Exception as e:
         print(e)
