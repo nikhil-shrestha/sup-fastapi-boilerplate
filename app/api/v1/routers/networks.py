@@ -3,6 +3,8 @@ import requests
 from datetime import datetime
 from typing import Any, List
 
+from random import randint
+
 from app import crud, models, schemas
 from app.api import deps
 from app.constants.role import Role
@@ -275,6 +277,153 @@ def get_RAN_monitor_log(
     response['ap'] = num1 + num2    
 
     return response
+
+@router.get('/get_network_stats/', tags=["Get Network Statistics"])
+def get_network_stats():
+
+    Net_Stat={
+        "Successful Connects":[],
+        "Throughput":[],
+        "Latency":[],
+        "Packet Loss":'13%',
+        "Mobility":'80%',
+    } 
+    
+    Plot_Stat = {
+        "Successful":[],
+        "Throughput":[],
+        "Latency":[],
+        "Packet Loss":[],
+        "Mobility":[],
+    }
+    
+    state= 'active'
+    
+    """ client=docker.from_env()
+    container=client.containers.list(filters={"id":id})
+    if len(container)==0:
+        print ("no container running with given id")
+        return    
+    result = measurements.read()
+    for row in result:
+        Net_Stat["Successful Connects"] = '80%'
+        measurements_data["time_stamp"]=row[3]
+        measurements_data["dl_thp"]=row[4]
+        measurements_data["ul_thp"]=row[5]
+        measurements_data["latency"]=row[6] 
+        measurements_data["tx_bytes"]=row[7] 
+        measurements_data["rx_bytes"]=row[8] 
+        #Meas_Data["all_data"].append(measurements_data)
+        #Meas_Data["name_of_nf"] = row[0]
+        measurements_data={} """
+    #return jsonify(Meas_Data),200
+    #tT = 5
+    #str2 = 'iperf -i 1 -fk -B 12.1.1.2 -b 200M -c 192.168.72.135 -r -t'+ str(tT)+ '| awk -Wi -F\'[ -]+\' \'/sec/{print $3"-"$4" "$8}\''
+    #client=docker.from_env()
+    #container = client.containers.get(id)
+    #run=container.exec_run(['sh', '-c', str2])
+    #temp1=(run.decode("utf-8"))
+    #out1 = [int(s) for s in temp1.split() if s.isdigit() and int(s)>100]
+    #ulTh = sum(out1[0:tT+1])/len(out1[0:tT+1])
+    #print(ulTh)
+    #dlTh = sum(out1[tT+1:])/len(out1[tT+1:])
+    #print(out1[t+1:])
+    #type(out1)
+    #print(out1)
+    #Throughput = ((ulTh+dlTh)/1000) 
+    #print(out2)
+  
+    Net_Stat["Throughput"] = '31.2 Mbps'#"{:.2f}".format(Throughput) + 'Mbps'
+    Net_Stat["Successful Connects"] = '80%'
+    Net_Stat["Latency"] = '13ms'
+    #return jsonify(monitor_nf),200
+    
+    series = ['2022-06-01', '2022-06-02', '2022-06-03', '2022-06-04',
+               '2022-06-05', '2022-06-06', '2022-06-07', '2022-06-08',
+               '2022-06-09', '2022-06-10', '2022-06-11', '2022-06-12',
+               '2022-06-13', '2022-06-14', '2022-06-15', '2022-06-16',
+               '2022-06-17', '2022-06-18', '2022-06-19', '2022-06-20',
+               '2022-06-21', '2022-06-22', '2022-06-23', '2022-06-24',
+               '2022-06-25', '2022-06-26', '2022-06-27', '2022-06-28',
+               '2022-06-29', '2022-06-30']
+               #pd.date_range(start='2022-06-01', end='2022-06-30', freq='D')
+    #print(series)
+    x=series
+    #for time in series:    
+    #    x.append(pd.date_range(time, freq='D', periods=1).strftime("%Y-%m-%d").tolist())
+    #a = pd.to_datetime(series['DatetimeIndex']).dt.date.unique().tolist()
+    #random.seed(43)
+    y =[]
+    for i in range(len(x)):
+        y.append(randint(0,100))
+
+    b = {}
+    a =[]
+    for i in range(len(x)):
+        #random.seed(1)
+        b['x'] = x[i]
+        b['y'] = y[i]
+        a.append(b.copy())
+
+    #a = random.randint(0, 100, size=(len(x)))
+    #b= a.tolist() 
+    Plot_Stat["Successful Connects"]= a
+    #Plot_Stat["ySuccessful"] = a
+    #a = random.randint(50, 200, size=(len(x)))
+    #b= a.tolist() 
+    
+    y =[]
+    for i in range(len(x)):
+        y.append(randint(50,200))
+    
+    b = {}
+    a =[]
+    for i in range(len(x)):
+        b['x'] = x[i]
+        b['y'] = y[i]
+        a.append(b.copy())
+    Plot_Stat["Throughput"]= a
+
+    y =[]
+    for i in range(len(x)):
+        y.append(randint(10,15))
+    
+    b = {}
+    a =[]
+    for i in range(len(x)):
+        b['x'] = x[i]
+        b['y'] = y[i]
+        a.append(b.copy())
+    
+    Plot_Stat["Latency"]= a
+    
+    y =[]
+    for i in range(len(x)):
+        y.append(randint(10,25))
+    
+    b = {}
+    a =[]
+    for i in range(len(x)):
+        b['x'] = x[i]
+        b['y'] = y[i]
+        a.append(b.copy())
+    
+    Plot_Stat["Packet Loss"] = a
+    
+    y =[]
+    for i in range(len(x)):
+        y.append(randint(50,100))
+    
+    b = {}
+    a =[]
+    for i in range(len(x)):
+        b['x'] = x[i]
+        b['y'] = y[i]
+        a.append(b.copy())
+        
+    Plot_Stat["Mobility"]= a
+    
+    return Net_Stat, Plot_Stat
 
 def read_from_url(url, stream=False):
     response = requests.get(url, stream=stream)
