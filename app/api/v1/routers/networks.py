@@ -30,8 +30,43 @@ def get_CN_details(
     
     if not ap_devices:
         raise HTTPException(status_code=404, detail="No AP devices found")
-        
-    items = [
+    
+    latest_ap_device = ap_devices[-1]
+    
+    ap_device = latest_ap_device["access_point"]["name"]
+    
+    items = []
+    
+    if ap_device == "ors17-nr":
+        items = [
+        {
+            "id": "check-interface-up",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/check-interface-up.log"
+        },
+        {
+            "id": "check-free-disk-space",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/check-free-disk-space.log"
+        },
+        {
+            "id": "buildout-slappart2-status",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/buildout-slappart2-status.log"
+        },
+        {
+            "id": "monitor-bootstrap-status",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/monitor-bootstrap-status.log",
+        },
+        {
+            "id": "monitor-http-frontend",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/monitor-http-frontend.log",
+        },
+        {
+            "id": "monitor-httpd-listening-on-tcp",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/monitor-httpd-listening-on-tcp.log",
+        }
+    ]
+    
+    elif ap_device == "ors58-nr":
+        items = [
         {
             "id": "check-interface-up",
             "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/check-interface-up.log"
@@ -57,6 +92,7 @@ def get_CN_details(
             "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/monitor-httpd-listening-on-tcp.log",
         }
     ]
+        
     
     responses = []
     results = []
@@ -116,44 +152,91 @@ def get_RAN_details(
     if not ap_devices:
         raise HTTPException(status_code=404, detail="No AP devices found")
     
-    items = [
-        {
-            "id": "buildout-slappart0-status",
-            "url":  "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/buildout-slappart0-status.log",
-        },
-        {
-            "id": "check-amarisoft-stats-log",
-            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/check-amarisoft-stats-log.log",
-        },
-        {
-            "id": "check-baseband-latency",
-            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/check-baseband-latency.log",
-        },
-        {
-            "id": "check-free-disk-space",
-            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/check-free-disk-space.log",
-        },
-        {
-            "id": "check-rx-saturated",
-            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/check-rx-saturated.log",
-        },
-        {
-            "id": "check-sdr-busy",
-            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/check-sdr-busy.log", 
-        },
-        {
-            "id": "monitor-bootstrap-status",
-            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/monitor-bootstrap-status.log",
-        },
-        {
-            "id": "monitor-http-frontend",
-            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/monitor-http-frontend.log",
-        },
-        {
-            "id": "monitor-httpd-listening-on-tcp",
-            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/monitor-httpd-listening-on-tcp.log",
-        }
-    ]
+    latest_ap_device = ap_devices[-1]
+    
+    ap_device = latest_ap_device["access_point"]["name"]
+    
+    items = []
+    
+    if ap_device == "ors17-nr":
+        items = [
+            {
+                "id": "buildout-slappart8-status",
+                "url":  "https://admin:yvsIBNgxFWy38gVt@softinst182366.host.vifib.net/share/private/log/monitor/promise/buildout-slappart8-status.log",
+            },
+            {
+                "id": "check-amarisoft-stats-log",
+                "url": "https://admin:yvsIBNgxFWy38gVt@softinst182366.host.vifib.net/share/private/log/monitor/promise/check-amarisoft-stats-log.log",
+            },
+            {
+                "id": "check-baseband-latency",
+                "url": "https://admin:yvsIBNgxFWy38gVt@softinst182366.host.vifib.net/share/private/log/monitor/promise/check-baseband-latency.log",
+            },
+            {
+                "id": "check-free-disk-space",
+                "url": "https://admin:yvsIBNgxFWy38gVt@softinst182366.host.vifib.net/share/private/log/monitor/promise/check-free-disk-space.log",
+            },
+            {
+                "id": "check-rx-saturated",
+                "url": "https://admin:yvsIBNgxFWy38gVt@softinst182366.host.vifib.net/share/private/log/monitor/promise/check-rx-saturated.log",
+            },
+            {
+                "id": "check-sdr-busy",
+                "url": "https://admin:yvsIBNgxFWy38gVt@softinst182366.host.vifib.net/share/private/log/monitor/promise/check-sdr-busy.log", 
+            },
+            {
+                "id": "monitor-bootstrap-status",
+                "url": "https://admin:yvsIBNgxFWy38gVt@softinst182366.host.vifib.net/share/private/log/monitor/promise/monitor-bootstrap-status.log",
+            },
+            {
+                "id": "monitor-http-frontend",
+                "url": "https://admin:yvsIBNgxFWy38gVt@softinst182366.host.vifib.net/share/private/log/monitor/promise/monitor-http-frontend.log",
+            },
+            {
+                "id": "monitor-httpd-listening-on-tcp",
+                "url": "https://admin:yvsIBNgxFWy38gVt@softinst182366.host.vifib.net/share/private/log/monitor/promise/monitor-httpd-listening-on-tcp.log",
+            }
+        ]
+    
+    elif ap_device == "ors58-nr":
+        items = [
+            {
+                "id": "buildout-slappart0-status",
+                "url":  "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/buildout-slappart0-status.log",
+            },
+            {
+                "id": "check-amarisoft-stats-log",
+                "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/check-amarisoft-stats-log.log",
+            },
+            {
+                "id": "check-baseband-latency",
+                "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/check-baseband-latency.log",
+            },
+            {
+                "id": "check-free-disk-space",
+                "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/check-free-disk-space.log",
+            },
+            {
+                "id": "check-rx-saturated",
+                "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/check-rx-saturated.log",
+            },
+            {
+                "id": "check-sdr-busy",
+                "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/check-sdr-busy.log", 
+            },
+            {
+                "id": "monitor-bootstrap-status",
+                "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/monitor-bootstrap-status.log",
+            },
+            {
+                "id": "monitor-http-frontend",
+                "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/monitor-http-frontend.log",
+            },
+            {
+                "id": "monitor-httpd-listening-on-tcp",
+                "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor/promise/monitor-httpd-listening-on-tcp.log",
+            }
+        ]
     
     responses = []
     results = []
