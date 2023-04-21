@@ -33,7 +33,7 @@ def get_CN_details(
     
     latest_ap_device = ap_devices[-1]
     
-    ap_device = latest_ap_device["access_point"]["name"]
+    ap_device = latest_ap_device["access_point"]["name"].lower()
     
     items = []
     
@@ -128,9 +128,9 @@ def get_CN_details(
             # Do something if an error is found
             raise HTTPException(status_code=404, detail=obj['message'])
             break
-    else:
-        print("No errors found")
-        # Do something if no errors are found
+        else:
+            print("No errors found")
+            # Do something if no errors are found
         
     return { "count": 1, "message": responses }
 
@@ -154,7 +154,7 @@ def get_RAN_details(
     
     latest_ap_device = ap_devices[-1]
     
-    ap_device = latest_ap_device["access_point"]["name"]
+    ap_device = latest_ap_device["access_point"]["name"].lower()
     
     items = []
     
@@ -273,9 +273,9 @@ def get_RAN_details(
             # Do something if an error is found
             raise HTTPException(status_code=404, detail=obj['message'])
             break
-    else:
-        print("No errors found")
-        # Do something if no errors are found
+        else:
+            print("No errors found")
+            # Do something if no errors are found
 
 
     return { "count": 1, "message": responses }
@@ -298,23 +298,124 @@ def get_CN_monitor_log(
     if not ap_devices:
         raise HTTPException(status_code=404, detail="No AP devices found")
     
-    url = "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor-httpd-error.log"
+    latest_ap_device = ap_devices[-1]
     
-    response = {}
+    ap_device = latest_ap_device["access_point"]["name"].lower()
     
-    try:
-        response = read_from_url(url)
-        result = [x.strip() for x in response.split(":")]
-        response = {}
-        rslt = [x.strip() for x in result[4].split()]
-        print(rslt)
-        response['switch'] = rslt[2]
-        response['message'] = result[5]
-    except Exception as e:
-        print(e)
-        raise HTTPException(status_code=404, detail=e)
-
-    return response
+    items = []
+    
+    if ap_device == "ors17-nr":
+        items = [
+        {
+            "id": "check-interface-up",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/check-interface-up.log"
+        },
+        {
+            "id": "check-free-disk-space",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/check-free-disk-space.log"
+        },
+        {
+            "id": "buildout-slappart2-status",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/buildout-slappart2-status.log"
+        },
+        {
+            "id": "monitor-bootstrap-status",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/monitor-bootstrap-status.log",
+        },
+        {
+            "id": "monitor-http-frontend",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/monitor-http-frontend.log",
+        },
+        {
+            "id": "monitor-httpd-listening-on-tcp",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/monitor-httpd-listening-on-tcp.log",
+        },
+        {
+            "id": "monitor-httpd-error",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor-httpd-error.log"
+        }
+    ]
+    
+    elif ap_device == "ors58-nr":
+        items = [
+        {
+            "id": "check-interface-up",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/check-interface-up.log"
+        },
+        {
+            "id": "check-free-disk-space",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/check-free-disk-space.log"
+        },
+        {
+            "id": "buildout-slappart15-status",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/buildout-slappart15-status.log"
+        },
+        {
+            "id": "monitor-bootstrap-status",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/monitor-bootstrap-status.log",
+        },
+        {
+            "id": "monitor-http-frontend",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/monitor-http-frontend.log",
+        },
+        {
+            "id": "monitor-httpd-listening-on-tcp",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/monitor-httpd-listening-on-tcp.log",
+        },
+        {
+            "id": "monitor-httpd-error",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor-httpd-error.log"
+        }
+    ]
+        
+    
+    responses = []
+    results = []
+    
+    for item in items:
+        if item['id'] == 'monitor-httpd-error':
+            try:
+                response = read_from_url(url)
+                result = [x.strip() for x in response.split(":")]
+                
+                rslt = [x.strip() for x in result[4].split()]
+                print(rslt)
+                
+                result_dict = {}
+                result_dict['switch'] = rslt[2]
+                result_dict['message'] = result[5]
+                responses.append(result_dict)
+            except Exception as e:
+                print(e)
+                result_dict = {}
+                result_dict['description'] = item['id']
+                result_dict['message'] = e
+                responses.append(result_dict)
+        else:
+            try:
+                response = read_from_url(item['url'])
+                
+                result = [x.strip() for x in response.split(' - ')]
+                
+                info = {}
+                info['description'] = item['id']
+                info['time'] = result[0]
+                info['status'] = result[1]
+                info['message'] = result[3]
+                results.append(info)
+                
+                result_dict = {}
+                result_dict['description'] = item['id']
+                result_dict['message'] = response
+                responses.append(result_dict)
+            except Exception as e:
+                print(e)
+                result_dict = {}
+                result_dict['description'] = item['id']
+                result_dict['message'] = e
+                responses.append(result_dict)
+        
+    return { "message": responses }
 
 
 @router.get("/ran_monitor_log")
@@ -334,32 +435,129 @@ def get_RAN_monitor_log(
     if not ap_devices:
         raise HTTPException(status_code=404, detail="No AP devices found")
     
-    url = "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor-httpd-error.log"
+    latest_ap_device = ap_devices[-1]
     
-    response = {}
+    ap_device = latest_ap_device["access_point"]["name"].lower()
     
-    try:
-        response = read_from_url(url)
-        result = [x.strip() for x in response.split(":")]
-        print(result)
-        response = {}
-        rslt = [x.strip() for x in result[4].split()]
-        print(rslt)
-        response['switch'] = rslt[2]
-        response['message'] = result[5]
-    except Exception as e:
-        print(e)
-        raise HTTPException(status_code=404, detail=e)
+    items = []
     
-    account_ap = crud.account_access_point.get_by_account_id(db, account_id=current_user.account_id)
+    if ap_device == "ors17-nr":
+        items = [
+        {
+            "id": "check-interface-up",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/check-interface-up.log"
+        },
+        {
+            "id": "check-free-disk-space",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/check-free-disk-space.log"
+        },
+        {
+            "id": "buildout-slappart2-status",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/buildout-slappart2-status.log"
+        },
+        {
+            "id": "monitor-bootstrap-status",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/monitor-bootstrap-status.log",
+        },
+        {
+            "id": "monitor-http-frontend",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/monitor-http-frontend.log",
+        },
+        {
+            "id": "monitor-httpd-listening-on-tcp",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor/promise/monitor-httpd-listening-on-tcp.log",
+        },
+        {
+            "id": "monitor-httpd-error",
+            "url": "https://admin:yvsIBNgxFWy38gVt@softinst182367.host.vifib.net/share/private/log/monitor-httpd-error.log"
+        }
+    ]
     
+    elif ap_device == "ors58-nr":
+        items = [
+        {
+            "id": "check-interface-up",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/check-interface-up.log"
+        },
+        {
+            "id": "check-free-disk-space",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/check-free-disk-space.log"
+        },
+        {
+            "id": "buildout-slappart15-status",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/buildout-slappart15-status.log"
+        },
+        {
+            "id": "monitor-bootstrap-status",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/monitor-bootstrap-status.log",
+        },
+        {
+            "id": "monitor-http-frontend",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/monitor-http-frontend.log",
+        },
+        {
+            "id": "monitor-httpd-listening-on-tcp",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor/promise/monitor-httpd-listening-on-tcp.log",
+        },
+        {
+            "id": "monitor-httpd-error",
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor-httpd-error.log"
+        }
+    ]
+        
     
-    num1 = f"{account_ap.id:03d}"
-    num2 = f"{account_ap.ap_id:03d}"
+    responses = []
+    results = []
     
-    response['ap'] = num1 + num2    
+    for item in items:
+        if item['id'] == 'monitor-httpd-error':
+            try:
+                response = read_from_url(url)
+                result = [x.strip() for x in response.split(":")]
 
-    return response
+                rslt = [x.strip() for x in result[4].split()]
+                
+                result_dict = {}
+                result_dict['description'] = item['id']
+                result_dict['switch'] = rslt[2]
+                result_dict['message'] = result[5]
+                num1 = f"{ap_device.id:03d}"
+                num2 = f"{ap_device.ap_id:03d}"
+                
+                result_dict['ap'] = num1 + num2
+                responses.append(result_dict)
+            except Exception as e:
+                print(e)
+                result_dict = {}
+                result_dict['description'] = item['id']
+                result_dict['message'] = e
+                responses.append(result_dict)
+        else:
+            try:
+                response = read_from_url(item['url'])
+                
+                result = [x.strip() for x in response.split(' - ')]
+                
+                info = {}
+                info['description'] = item['id']
+                info['time'] = result[0]
+                info['status'] = result[1]
+                info['message'] = result[3]
+                results.append(info)
+                
+                result_dict = {}
+                result_dict['description'] = item['id']
+                result_dict['message'] = response
+                responses.append(result_dict)
+            except Exception as e:
+                print(e)
+                result_dict = {}
+                result_dict['description'] = item['id']
+                result_dict['message'] = e
+                responses.append(result_dict)
+        
+        
+    return { "message": responses }
 
 @router.get('/get_network_stats/', tags=["Get Network Statistics"])
 def get_network_stats():
