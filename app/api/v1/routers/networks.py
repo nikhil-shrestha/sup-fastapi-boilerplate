@@ -562,7 +562,7 @@ def get_RAN_monitor_log(
         
     return { "message": responses }
 
-@router.get('/get_network_stats/', tags=["Get Network Statistics"])
+@router.get('/get_network_stats/')
 def get_network_stats():
 
     Net_Stat={
