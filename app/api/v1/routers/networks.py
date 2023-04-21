@@ -26,14 +26,14 @@ def get_CN_details(
     if not current_user.account_id:
         raise HTTPException(status_code=404, detail="Account not found")
     
-    ap_devices = crud.account_access_point.list_by_account_id(db, account_id=current_user.account_id)
+    latest_ap_device = crud.account_access_point.get_latest_by_account_id(db, account_id=current_user.account_id)
+    print(latest_ap_device)
     
-    if not ap_devices:
+    if not latest_ap_device:
         raise HTTPException(status_code=404, detail="No AP devices found")
     
-    latest_ap_device = ap_devices[-1]
-    
-    ap_device = latest_ap_device["access_point"]["name"].lower()
+    ap_device = latest_ap_device.access_point.name.lower()
+    print(ap_device)
     
     items = []
     
@@ -147,14 +147,14 @@ def get_RAN_details(
     if not current_user.account_id:
         raise HTTPException(status_code=404, detail="Account not found")
     
-    ap_devices = crud.account_access_point.list_by_account_id(db, account_id=current_user.account_id)
+    latest_ap_device = crud.account_access_point.get_latest_by_account_id(db, account_id=current_user.account_id)
+    print(latest_ap_device)
     
-    if not ap_devices:
+    if not latest_ap_device:
         raise HTTPException(status_code=404, detail="No AP devices found")
     
-    latest_ap_device = ap_devices[-1]
-    
-    ap_device = latest_ap_device["access_point"]["name"].lower()
+    ap_device = latest_ap_device.access_point.name.lower()
+    print(ap_device)
     
     items = []
     
@@ -293,14 +293,14 @@ def get_CN_monitor_log(
     if not current_user.account_id:
         raise HTTPException(status_code=404, detail="Account not found")
     
-    ap_devices = crud.account_access_point.list_by_account_id(db, account_id=current_user.account_id)
+    latest_ap_device = crud.account_access_point.get_latest_by_account_id(db, account_id=current_user.account_id)
+    print(latest_ap_device)
     
-    if not ap_devices:
+    if not latest_ap_device:
         raise HTTPException(status_code=404, detail="No AP devices found")
     
-    latest_ap_device = ap_devices[-1]
-    
-    ap_device = latest_ap_device["access_point"]["name"].lower()
+    ap_device = latest_ap_device.access_point.name.lower()
+    print(ap_device)
     
     # ap_device = "ors17-nr"
     
@@ -433,14 +433,14 @@ def get_RAN_monitor_log(
     if not current_user.account_id:
         raise HTTPException(status_code=404, detail="Account not found")
     
-    ap_devices = crud.account_access_point.list_by_account_id(db, account_id=current_user.account_id)
+    latest_ap_device = crud.account_access_point.get_latest_by_account_id(db, account_id=current_user.account_id)
+    print(latest_ap_device)
     
-    if not ap_devices:
+    if not latest_ap_device:
         raise HTTPException(status_code=404, detail="No AP devices found")
     
-    latest_ap_device = ap_devices[-1]
-    
-    ap_device = latest_ap_device["access_point"]["name"].lower()
+    ap_device = latest_ap_device.access_point.name.lower()
+    print(ap_device)
     
     items = []
     
