@@ -12,7 +12,7 @@ class ProductBase(BaseModel):
     type: Optional[str] = None
     link: Optional[str] = None
     is_preview: Optional[bool] = False
-    status: Optional[bool] = False
+    status: Optional[bool] = True
 
 # Properties to receive via API on creation
 class ProductCreate(ProductBase):

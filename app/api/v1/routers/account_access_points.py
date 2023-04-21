@@ -61,6 +61,11 @@ def create_account_access_point(
             status_code=403, detail="Invalid Product ID!",
         )
     
+    product_in = schemas.ProductUpdate(
+        status = False
+    )
+    product = crud.product.update(db, db_obj=product, obj_in=product_in)
+    
     account_ap_in = schemas.AccountAccessPointCreate()
     account_ap_in.ap_id = product.id
     account_ap_in.account_id = current_user.account_id
