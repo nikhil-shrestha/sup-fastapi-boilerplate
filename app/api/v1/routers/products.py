@@ -44,6 +44,28 @@ def create_product(
     product = crud.product.create(db, obj_in=product_in)
     return product
 
+
+@router.get("/order", response_model=List[schemas.Product])
+def get_products_order(
+    *,
+    db: Session = Depends(deps.get_db),
+) -> Any:
+    """
+    Retrieve all products.
+    """
+    products = []
+    product_ap = crud.product.get_by_type(db, type="access_point") 
+    if not product_ap:
+        raise HTTPException(
+            status_code=404, detail="Access Point not available.",
+        )
+    products.append(product_ap)
+    product_sim = crud.product.get_by_type(db, type="sim_card")
+    if product_sim:
+        products.append(product_sim)
+    return products
+
+
 @router.get("/{product_id}", response_model=schemas.Product)
 def read_product_by_id(
     product_id: int,
@@ -82,22 +104,3 @@ def update_product(
     product = crud.product.update(db, db_obj=product, obj_in=product_in)
     return product
 
-
-@router.get("/order", response_model=List[schemas.Product])
-def get_products(
-    *,
-    db: Session = Depends(deps.get_db),
-) -> Any:
-    """
-    Retrieve all products.
-    """
-    products = []
-    product_ap = crud.product.get_by_type(db, type="access_point")
-    if not product_ap:
-        raise HTTPException(
-            status_code=404, detail="Product does not exist",
-        )
-    products.append(product_ap)
-    product_sim = crud.product.get_by_type(db, type="sim")
-    products.append(product_sim)
-    return products
