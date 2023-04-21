@@ -302,6 +302,8 @@ def get_CN_monitor_log(
     
     ap_device = latest_ap_device["access_point"]["name"].lower()
     
+    # ap_device = "ors17-nr"
+    
     items = []
     
     if ap_device == "ors17-nr":
@@ -375,13 +377,14 @@ def get_CN_monitor_log(
     for item in items:
         if item['id'] == 'monitor-httpd-error':
             try:
-                response = read_from_url(url)
+                response = read_from_url(item['url'])
                 result = [x.strip() for x in response.split(":")]
                 
                 rslt = [x.strip() for x in result[4].split()]
                 print(rslt)
                 
                 result_dict = {}
+                result_dict['description'] = item['id']
                 result_dict['switch'] = rslt[2]
                 result_dict['message'] = result[5]
                 responses.append(result_dict)
@@ -512,7 +515,7 @@ def get_RAN_monitor_log(
     for item in items:
         if item['id'] == 'monitor-httpd-error':
             try:
-                response = read_from_url(url)
+                response = read_from_url(item['url'])
                 result = [x.strip() for x in response.split(":")]
 
                 rslt = [x.strip() for x in result[4].split()]
