@@ -105,14 +105,14 @@ def get_CN_details(
             
             info = {}
             info['description'] = item['id']
-            info['time'] = result[0]
-            info['status'] = result[1]
-            info['message'] = result[3]
+            info['time'] = "-".join(result[:3])
+            info['status'] = result[3]
+            info['message'] = "-".join(result[6:])
             results.append(info)
             
             result_dict = {}
             result_dict['description'] = item['id']
-            result_dict['message'] = response
+            result_dict['message'] = "-".join(result[6:])
             responses.append(result_dict)
         except Exception as e:
             print(e)
@@ -253,18 +253,18 @@ def get_RAN_details(
         try:
             response = read_from_url(item['url'])
             
-            result = [x.strip() for x in response.split(' - ')]
+            result = [x.strip() for x in response.split('-')]
             
             info = {}
             info['description'] = item['id']
-            info['time'] = result[0]
-            info['status'] = result[1]
-            info['message'] = result[3]
+            info['time'] = "-".join(result[:3])
+            info['status'] = result[3]
+            info['message'] = "-".join(result[6:])
             results.append(info)
             
             result_dict = {}
             result_dict['description'] = item['id']
-            result_dict['message'] = response
+            result_dict['message'] = "-".join(result[6:])
             responses.append(result_dict)
         except Exception as e:
             print(e)
@@ -411,17 +411,18 @@ def get_CN_monitor_log(
                 response = read_from_url(item['url'])
                 
                 result = [x.strip() for x in response.split(' - ')]
+                print(result)
                 
                 info = {}
                 info['description'] = item['id']
-                info['time'] = result[0]
-                info['status'] = result[1]
-                info['message'] = result[3]
+                info['time'] = "-".join(result[:3])
+                info['status'] = result[3]
+                info['message'] = "-".join(result[6:])
                 results.append(info)
                 
                 result_dict = {}
                 result_dict['description'] = item['id']
-                result_dict['message'] = response
+                result_dict['message'] = "-".join(result[6:])
                 responses.append(result_dict)
             except Exception as e:
                 print(e)
@@ -553,18 +554,20 @@ def get_RAN_monitor_log(
             try:
                 response = read_from_url(item['url'])
                 
-                result = [x.strip() for x in response.split(' - ')]
+                result = [x.strip() for x in response.split('-')]
+                print(result)
+                print(len(result))
                 
                 info = {}
                 info['description'] = item['id']
-                info['time'] = result[0]
-                info['status'] = result[1]
-                info['message'] = result[3]
+                info['time'] = "-".join(result[:3])
+                info['status'] = result[3]
+                info['message'] = "-".join(result[6:])
                 results.append(info)
                 
                 result_dict = {}
                 result_dict['description'] = item['id']
-                result_dict['message'] = response
+                result_dict['message'] = "-".join(result[6:])
                 responses.append(result_dict)
             except Exception as e:
                 print(e)
