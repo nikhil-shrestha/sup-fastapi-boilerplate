@@ -132,7 +132,11 @@ def get_CN_details(
             print("No errors found")
             # Do something if no errors are found
         
-    return { "count": 1, "message": responses }
+    return { 
+            "count": 1, 
+            "device": 1, 
+            "message": responses 
+        }
 
 
 @router.get("/ran_details")
@@ -158,7 +162,10 @@ def get_RAN_details(
     
     items = []
     
+    device = "5-Fi 17"
+    
     if ap_device == "ors17-nr":
+        device = "5-Fi 17"
         items = [
             {
                 "id": "buildout-slappart8-status",
@@ -199,6 +206,7 @@ def get_RAN_details(
         ]
     
     elif ap_device == "ors58-nr":
+        device = "5-Fi 58"
         items = [
             {
                 "id": "buildout-slappart0-status",
@@ -278,7 +286,11 @@ def get_RAN_details(
             # Do something if no errors are found
 
 
-    return { "count": 1, "message": responses }
+    return { 
+            "count": 1, 
+            "device": { "name": device, "count": 1}, 
+            "message": responses 
+        }
 
 
 @router.get("/cn_monitor_log")
