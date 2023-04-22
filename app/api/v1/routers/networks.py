@@ -118,7 +118,7 @@ def get_CN_details(
             print(e)
             result_dict = {}
             result_dict['description'] = item['id']
-            result_dict['message'] = e
+            result_dict['message'] =  "Error Occured"
             responses.append(result_dict)
 
     # Loop over each object and check its status
@@ -270,7 +270,7 @@ def get_RAN_details(
             print(e)
             result_dict = {}
             result_dict['description'] = item['id']
-            result_dict['message'] = e
+            result_dict['message'] =  "Error Occured"
             responses.append(result_dict)
 
 
@@ -404,7 +404,7 @@ def get_CN_monitor_log(
                 print(e)
                 result_dict = {}
                 result_dict['description'] = item['id']
-                result_dict['message'] = e
+                result_dict['message'] =  "Error Occured"
                 responses.append(result_dict)
         else:
             try:
@@ -427,7 +427,7 @@ def get_CN_monitor_log(
                 print(e)
                 result_dict = {}
                 result_dict['description'] = item['id']
-                result_dict['message'] = e
+                result_dict['message'] =  "Error Occured"
                 responses.append(result_dict)
         
     return { "message": responses }
@@ -453,6 +453,8 @@ def get_RAN_monitor_log(
     
     ap_device = latest_ap_device.access_point.name.lower()
     print(ap_device)
+    
+    # ap_device = "ors17-nr"
     
     items = []
     
@@ -516,7 +518,7 @@ def get_RAN_monitor_log(
         },
         {
             "id": "monitor-httpd-error",
-            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182358.host.vifib.net/share/private/log/monitor-httpd-error.log"
+            "url": "https://admin:dWi5B8oy6FEzuoH3@softinst182359.host.vifib.net/share/private/log/monitor-httpd-error.log"
         }
     ]
         
@@ -536,8 +538,8 @@ def get_RAN_monitor_log(
                 result_dict['description'] = item['id']
                 result_dict['switch'] = rslt[2]
                 result_dict['message'] = result[5]
-                num1 = f"{ap_device.id:03d}"
-                num2 = f"{ap_device.ap_id:03d}"
+                num1 = f"{latest_ap_device.id:03d}"
+                num2 = f"{latest_ap_device.ap_id:03d}"
                 
                 result_dict['ap'] = num1 + num2
                 responses.append(result_dict)
@@ -545,7 +547,7 @@ def get_RAN_monitor_log(
                 print(e)
                 result_dict = {}
                 result_dict['description'] = item['id']
-                result_dict['message'] = e
+                result_dict['message'] = "Error Occured"
                 responses.append(result_dict)
         else:
             try:
@@ -568,7 +570,7 @@ def get_RAN_monitor_log(
                 print(e)
                 result_dict = {}
                 result_dict['description'] = item['id']
-                result_dict['message'] = e
+                result_dict['message'] =  "Error Occured"
                 responses.append(result_dict)
         
         
