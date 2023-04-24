@@ -101,7 +101,7 @@ def get_CN_details(
         try:
             response = read_from_url(item['url'])
             
-            result = [x.strip() for x in response.split(' - ')]
+            result = [x.strip() for x in response.split('-')]
             
             info = {}
             info['description'] = item['id']
@@ -399,6 +399,10 @@ def get_CN_monitor_log(
                 result_dict['description'] = item['id']
                 result_dict['switch'] = rslt[2]
                 result_dict['message'] = result[5]
+                num1 = f"{latest_ap_device.id:03d}"
+                num2 = f"{latest_ap_device.ap_id:03d}"
+                
+                result_dict['ap_id'] = num1 + num2
                 responses.append(result_dict)
             except Exception as e:
                 print(e)
@@ -410,7 +414,7 @@ def get_CN_monitor_log(
             try:
                 response = read_from_url(item['url'])
                 
-                result = [x.strip() for x in response.split(' - ')]
+                result = [x.strip() for x in response.split('-')]
                 print(result)
                 
                 info = {}
@@ -423,6 +427,10 @@ def get_CN_monitor_log(
                 result_dict = {}
                 result_dict['description'] = item['id']
                 result_dict['message'] = "-".join(result[6:])
+                num1 = f"{latest_ap_device.id:03d}"
+                num2 = f"{latest_ap_device.ap_id:03d}"
+                
+                result_dict['ap_id'] = num1 + num2
                 responses.append(result_dict)
             except Exception as e:
                 print(e)
@@ -542,7 +550,7 @@ def get_RAN_monitor_log(
                 num1 = f"{latest_ap_device.id:03d}"
                 num2 = f"{latest_ap_device.ap_id:03d}"
                 
-                result_dict['ap'] = num1 + num2
+                result_dict['ap_id'] = num1 + num2
                 responses.append(result_dict)
             except Exception as e:
                 print(e)
@@ -568,6 +576,10 @@ def get_RAN_monitor_log(
                 result_dict = {}
                 result_dict['description'] = item['id']
                 result_dict['message'] = "-".join(result[6:])
+                num1 = f"{latest_ap_device.id:03d}"
+                num2 = f"{latest_ap_device.ap_id:03d}"
+                
+                result_dict['ap_id'] = num1 + num2
                 responses.append(result_dict)
             except Exception as e:
                 print(e)
