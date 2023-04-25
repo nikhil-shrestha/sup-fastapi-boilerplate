@@ -3,6 +3,7 @@ import requests
 from datetime import datetime
 from typing import Any, List
 
+import re
 from random import randint
 
 from app import crud, models, schemas
@@ -96,29 +97,48 @@ def get_CN_details(
     
     responses = []
     results = []
-    
+
     for item in items:
         try:
             response = read_from_url(item['url'])
-            
-            result = [x.strip() for x in response.split('-')]
-            
-            info = {}
-            info['description'] = item['id']
-            info['time'] = "-".join(result[:3])
-            info['status'] = result[3]
-            info['message'] = "-".join(result[6:])
-            results.append(info)
-            
-            result_dict = {}
-            result_dict['description'] = item['id']
-            result_dict['message'] = "-".join(result[6:])
-            responses.append(result_dict)
+
+            regex = r"^(\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2})\s-\s(\w+)\s-\s(\d+-\d+)\s-\s(.+)$"
+            match = re.match(regex, response)
+
+            if match:
+                date_time = match.group(1)
+                log_level = match.group(2)
+                process_info = match.group(3)
+                log_message = match.group(4)
+
+                print(f"Date and time: {date_time}")
+                print(f"Log level: {log_level}")
+                print(f"Process info: {process_info}")
+                print(f"Log message: {log_message}")
+
+                result_dict = {}
+                result_dict['description'] = item['id']
+                result_dict['date_time'] = date_time
+                result_dict['log_level'] = log_level
+                result_dict['process_info'] = process_info
+                result_dict['message'] = log_message
+
+                num1 = f"{latest_ap_device.id:03d}"
+                num2 = f"{latest_ap_device.ap_id:03d}"
+                result_dict['ap_id'] = num1 + num2
+
+                responses.append(result_dict)
+            else:
+                print("No match")
+                result_dict = {}
+                result_dict['description'] = item['id']
+                result_dict['message'] = "No match"
+                responses.append(result_dict)
         except Exception as e:
             print(e)
             result_dict = {}
             result_dict['description'] = item['id']
-            result_dict['message'] =  "Error Occured"
+            result_dict['message'] = "Error Occured"
             responses.append(result_dict)
 
     # Loop over each object and check its status
@@ -248,29 +268,48 @@ def get_RAN_details(
     
     responses = []
     results = []
-    
+
     for item in items:
         try:
             response = read_from_url(item['url'])
-            
-            result = [x.strip() for x in response.split('-')]
-            
-            info = {}
-            info['description'] = item['id']
-            info['time'] = "-".join(result[:3])
-            info['status'] = result[3]
-            info['message'] = "-".join(result[6:])
-            results.append(info)
-            
-            result_dict = {}
-            result_dict['description'] = item['id']
-            result_dict['message'] = "-".join(result[6:])
-            responses.append(result_dict)
+
+            regex = r"^(\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2})\s-\s(\w+)\s-\s(\d+-\d+)\s-\s(.+)$"
+            match = re.match(regex, response)
+
+            if match:
+                date_time = match.group(1)
+                log_level = match.group(2)
+                process_info = match.group(3)
+                log_message = match.group(4)
+
+                print(f"Date and time: {date_time}")
+                print(f"Log level: {log_level}")
+                print(f"Process info: {process_info}")
+                print(f"Log message: {log_message}")
+
+                result_dict = {}
+                result_dict['description'] = item['id']
+                result_dict['date_time'] = date_time
+                result_dict['log_level'] = log_level
+                result_dict['process_info'] = process_info
+                result_dict['message'] = log_message
+
+                num1 = f"{latest_ap_device.id:03d}"
+                num2 = f"{latest_ap_device.ap_id:03d}"
+                result_dict['ap_id'] = num1 + num2
+
+                responses.append(result_dict)
+            else:
+                print("No match")
+                result_dict = {}
+                result_dict['description'] = item['id']
+                result_dict['message'] = "No match"
+                responses.append(result_dict)
         except Exception as e:
             print(e)
             result_dict = {}
             result_dict['description'] = item['id']
-            result_dict['message'] =  "Error Occured"
+            result_dict['message'] = "Error Occured"
             responses.append(result_dict)
 
 
@@ -385,60 +424,91 @@ def get_CN_monitor_log(
     
     responses = []
     results = []
-    
+
     for item in items:
         if item['id'] == 'monitor-httpd-error':
             try:
                 response = read_from_url(item['url'])
-                result = [x.strip() for x in response.split(":")]
-                
-                rslt = [x.strip() for x in result[4].split()]
-                print(rslt)
-                
-                result_dict = {}
-                result_dict['time'] = "-".join(result[:3])
-                result_dict['description'] = item['id']
-                result_dict['switch'] = rslt[2]
-                result_dict['message'] = result[5]
-                num1 = f"{latest_ap_device.id:03d}"
-                num2 = f"{latest_ap_device.ap_id:03d}"
-                
-                result_dict['ap_id'] = num1 + num2
-                responses.append(result_dict)
+
+                regex = r"^\[(\w{3}\s\w{3}\s\d{2}\s\d{2}:\d{2}:\d{2}.\d{6}\s\d{4})\]\s\[(\w+):\w+\]\s\[(pid\s\d+:\w+\s\d+)\]\s(.+)$"
+                match = re.match(regex, response)
+
+                if match:
+                    date_time = match.group(1)
+                    log_level = match.group(2)
+                    process_info = match.group(3)
+                    command_line = match.group(4)
+
+                    print(f"Date and time: {date_time}")
+                    print(f"Log level: {log_level}")
+                    print(f"Process info: {process_info}")
+                    print(f"Command line: {command_line}")
+
+                    result_dict = {}
+                    result_dict['date_time'] = date_time
+                    result_dict['log_level'] = log_level
+                    result_dict['process_info'] = process_info
+                    result_dict['description'] = item['id']
+                    result_dict['command_line'] = command_line
+
+                    num1 = f"{latest_ap_device.id:03d}"
+                    num2 = f"{latest_ap_device.ap_id:03d}"
+                    result_dict['ap_id'] = num1 + num2
+
+                    responses.append(result_dict)
+                else:
+                    print("No match")
+                    result_dict = {}
+                    result_dict['description'] = item['id']
+                    result_dict['message'] = "No match"
+                    responses.append(result_dict)
             except Exception as e:
                 print(e)
                 result_dict = {}
                 result_dict['description'] = item['id']
-                result_dict['message'] =  "Error Occured"
+                result_dict['message'] = "Error Occurred"
                 responses.append(result_dict)
         else:
             try:
                 response = read_from_url(item['url'])
-                
-                result = [x.strip() for x in response.split('-')]
-                print(result)
-                
-                info = {}
-                info['description'] = item['id']
-                info['time'] = "-".join(result[:3])
-                info['status'] = result[3]
-                info['message'] = "-".join(result[6:])
-                results.append(info)
-                
-                result_dict = {}
-                result_dict['time'] = "-".join(result[:3])
-                result_dict['description'] = item['id']
-                result_dict['message'] = "-".join(result[6:])
-                num1 = f"{latest_ap_device.id:03d}"
-                num2 = f"{latest_ap_device.ap_id:03d}"
-                
-                result_dict['ap_id'] = num1 + num2
-                responses.append(result_dict)
+
+                regex = r"^(\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2})\s-\s(\w+)\s-\s(\d+-\d+)\s-\s(.+)$"
+                match = re.match(regex, response)
+
+                if match:
+                    date_time = match.group(1)
+                    log_level = match.group(2)
+                    process_info = match.group(3)
+                    log_message = match.group(4)
+
+                    print(f"Date and time: {date_time}")
+                    print(f"Log level: {log_level}")
+                    print(f"Process info: {process_info}")
+                    print(f"Log message: {log_message}")
+
+                    result_dict = {}
+                    result_dict['description'] = item['id']
+                    result_dict['date_time'] = date_time
+                    result_dict['log_level'] = log_level
+                    result_dict['process_info'] = process_info
+                    result_dict['message'] = log_message
+
+                    num1 = f"{latest_ap_device.id:03d}"
+                    num2 = f"{latest_ap_device.ap_id:03d}"
+                    result_dict['ap_id'] = num1 + num2
+
+                    responses.append(result_dict)
+                else:
+                    print("No match")
+                    result_dict = {}
+                    result_dict['description'] = item['id']
+                    result_dict['message'] = "No match"
+                    responses.append(result_dict)
             except Exception as e:
                 print(e)
                 result_dict = {}
                 result_dict['description'] = item['id']
-                result_dict['message'] =  "Error Occured"
+                result_dict['message'] = "Error Occured"
                 responses.append(result_dict)
         
     return { "message": responses }
@@ -541,55 +611,86 @@ def get_RAN_monitor_log(
         if item['id'] == 'monitor-httpd-error':
             try:
                 response = read_from_url(item['url'])
-                result = [x.strip() for x in response.split(":")]
 
-                rslt = [x.strip() for x in result[4].split()]
-                
+                regex = r"^\[(\w{3}\s\w{3}\s\d{2}\s\d{2}:\d{2}:\d{2}.\d{6}\s\d{4})\]\s\[(\w+):\w+\]\s\[(pid\s\d+:\w+\s\d+)\]\s(.+)$"
+                match = re.match(regex, response)
+
+                if match:
+                    date_time = match.group(1)
+                    log_level = match.group(2)
+                    process_info = match.group(3)
+                    command_line = match.group(4)
+
+                    print(f"Date and time: {date_time}")
+                    print(f"Log level: {log_level}")
+                    print(f"Process info: {process_info}")
+                    print(f"Command line: {command_line}")
+
+                    result_dict = {}
+                    result_dict['date_time'] = date_time
+                    result_dict['log_level'] = log_level
+                    result_dict['process_info'] = process_info
+                    result_dict['description'] = item['id']
+                    result_dict['command_line'] = command_line
+
+                    num1 = f"{latest_ap_device.id:03d}"
+                    num2 = f"{latest_ap_device.ap_id:03d}"
+                    result_dict['ap_id'] = num1 + num2
+
+                    responses.append(result_dict)
+                else:
+                    print("No match")
+                    result_dict = {}
+                    result_dict['description'] = item['id']
+                    result_dict['message'] = "No match"
+                    responses.append(result_dict)
+            except Exception as e:
+                print(e)
                 result_dict = {}
-                result_dict['time'] = "-".join(result[:3])
                 result_dict['description'] = item['id']
-                result_dict['switch'] = rslt[2]
-                result_dict['message'] = result[5]
-                num1 = f"{latest_ap_device.id:03d}"
-                num2 = f"{latest_ap_device.ap_id:03d}"
-                
-                result_dict['ap_id'] = num1 + num2
+                result_dict['message'] = "Error Occurred"
                 responses.append(result_dict)
+        else:
+            try:
+                response = read_from_url(item['url'])
+
+                regex = r"^(\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2})\s-\s(\w+)\s-\s(\d+-\d+)\s-\s(.+)$"
+                match = re.match(regex, response)
+
+                if match:
+                    date_time = match.group(1)
+                    log_level = match.group(2)
+                    process_info = match.group(3)
+                    log_message = match.group(4)
+
+                    print(f"Date and time: {date_time}")
+                    print(f"Log level: {log_level}")
+                    print(f"Process info: {process_info}")
+                    print(f"Log message: {log_message}")
+
+                    result_dict = {}
+                    result_dict['description'] = item['id']
+                    result_dict['date_time'] = date_time
+                    result_dict['log_level'] = log_level
+                    result_dict['process_info'] = process_info
+                    result_dict['message'] = log_message
+
+                    num1 = f"{latest_ap_device.id:03d}"
+                    num2 = f"{latest_ap_device.ap_id:03d}"
+                    result_dict['ap_id'] = num1 + num2
+
+                    responses.append(result_dict)
+                else:
+                    print("No match")
+                    result_dict = {}
+                    result_dict['description'] = item['id']
+                    result_dict['message'] = "No match"
+                    responses.append(result_dict)
             except Exception as e:
                 print(e)
                 result_dict = {}
                 result_dict['description'] = item['id']
                 result_dict['message'] = "Error Occured"
-                responses.append(result_dict)
-        else:
-            try:
-                response = read_from_url(item['url'])
-                
-                result = [x.strip() for x in response.split('-')]
-                print(result)
-                print(len(result))
-                
-                info = {}
-                info['description'] = item['id']
-                info['time'] = "-".join(result[:3])
-                info['status'] = result[3]
-                info['message'] = "-".join(result[6:])
-                results.append(info)
-                
-                result_dict = {}
-                result_dict['time'] = "-".join(result[:3])
-                result_dict['description'] = item['id']
-                result_dict['message'] = "-".join(result[6:])
-                num1 = f"{latest_ap_device.id:03d}"
-                num2 = f"{latest_ap_device.ap_id:03d}"
-                
-                result_dict['ap_id'] = num1 + num2
-                responses.append(result_dict)
-            except Exception as e:
-                print(e)
-                result_dict = {}
-                result_dict['description'] = item['id']
-                result_dict['message'] =  "Error Occured"
                 responses.append(result_dict)
         
         
