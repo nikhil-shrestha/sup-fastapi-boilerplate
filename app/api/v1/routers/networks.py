@@ -396,6 +396,7 @@ def get_CN_monitor_log(
                 print(rslt)
                 
                 result_dict = {}
+                result_dict['time'] = "-".join(result[:3])
                 result_dict['description'] = item['id']
                 result_dict['switch'] = rslt[2]
                 result_dict['message'] = result[5]
@@ -425,6 +426,7 @@ def get_CN_monitor_log(
                 results.append(info)
                 
                 result_dict = {}
+                result_dict['time'] = "-".join(result[:3])
                 result_dict['description'] = item['id']
                 result_dict['message'] = "-".join(result[6:])
                 num1 = f"{latest_ap_device.id:03d}"
@@ -544,6 +546,7 @@ def get_RAN_monitor_log(
                 rslt = [x.strip() for x in result[4].split()]
                 
                 result_dict = {}
+                result_dict['time'] = "-".join(result[:3])
                 result_dict['description'] = item['id']
                 result_dict['switch'] = rslt[2]
                 result_dict['message'] = result[5]
@@ -574,6 +577,7 @@ def get_RAN_monitor_log(
                 results.append(info)
                 
                 result_dict = {}
+                result_dict['time'] = "-".join(result[:3])
                 result_dict['description'] = item['id']
                 result_dict['message'] = "-".join(result[6:])
                 num1 = f"{latest_ap_device.id:03d}"
