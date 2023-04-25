@@ -122,11 +122,6 @@ def get_CN_details(
                 result_dict['log_level'] = log_level
                 result_dict['process_info'] = process_info
                 result_dict['message'] = log_message
-
-                num1 = f"{latest_ap_device.id:03d}"
-                num2 = f"{latest_ap_device.ap_id:03d}"
-                result_dict['ap_id'] = num1 + num2
-
                 responses.append(result_dict)
             else:
                 print("No match")
@@ -142,9 +137,9 @@ def get_CN_details(
             responses.append(result_dict)
 
     # Loop over each object and check its status
-    for obj in results:
-        if obj['status'] == 'ERROR':
-            print(f"Found error in {obj['name']} - {obj['message']}")
+    for obj in responses:
+        if obj['log_level'] == 'ERROR':
+            print(f"Found error in {obj['description']} - {obj['message']}")
             # Do something if an error is found
             raise HTTPException(status_code=404, detail=obj['message'])
             break
@@ -293,11 +288,6 @@ def get_RAN_details(
                 result_dict['log_level'] = log_level
                 result_dict['process_info'] = process_info
                 result_dict['message'] = log_message
-
-                num1 = f"{latest_ap_device.id:03d}"
-                num2 = f"{latest_ap_device.ap_id:03d}"
-                result_dict['ap_id'] = num1 + num2
-
                 responses.append(result_dict)
             else:
                 print("No match")
@@ -314,9 +304,9 @@ def get_RAN_details(
 
 
     # Loop over each object and check its status
-    for obj in results:
-        if obj['status'] == 'ERROR':
-            print(f"Found error in {obj['name']} - {obj['message']}")
+    for obj in responses:
+        if obj['log_level'] == 'ERROR':
+            print(f"Found error in {obj['description']} - {obj['message']}")
             # Do something if an error is found
             raise HTTPException(status_code=404, detail=obj['message'])
             break
