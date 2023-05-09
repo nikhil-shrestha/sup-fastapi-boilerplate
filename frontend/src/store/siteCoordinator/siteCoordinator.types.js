@@ -1,0 +1,2 @@
+export const UPDATE_CONFIG_INFO = 'UPDATE_CONFIG_INFO';
+export const UPDATE_DEPLOY = 'UPDATE_DEPLOY';

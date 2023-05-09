@@ -1,0 +1,191 @@
+.access_point_container {
+  .fgd-top-head {
+    width: calc(100% + 48px + 60px);
+    height: 45px;
+    background-color: white;
+    margin-left: calc(-24px - 30px);
+    position: fixed;
+    box-shadow: 0px 2px 4px #00000029;
+    display: flex;
+    padding-left: 30px;
+    align-items: center;
+    color: #14395e;
+    font-family: "five-g-bold";
+    z-index: 99;
+    span {
+      font-family: Poppins;
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 35px;
+      letter-spacing: 0px;
+      color: #2c2c6e;
+    }
+  }
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    .form {
+      width: 352px;
+      > * {
+        margin-top: 20px;
+      }
+      .form_title {
+        border-radius: 5px;
+        font-family: "five-g-semi-bold";
+        padding: 5px 0;
+        text-align: center;
+      }
+    }
+    .forgot_password {
+      border-radius: 5px;
+      font-family: "five-g-regular";
+      padding: 5px 0;
+      text-align: center;
+      margin-top: 30px;
+      > span {
+        color: #557ebd;
+      }
+    }
+  }
+  .login-avatar {
+    background-color: #2c2c6e;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      width: 100px;
+      height: 60px;
+      fill: white;
+    }
+  }
+  .add_access_point {
+    .header {
+      background-color: #2c2c6e;
+      color: white;
+      .content {
+        color: white;
+      }
+    }
+
+    .sub_content {
+      font-family: "five-g-light";
+    }
+    .dot {
+      background-color: #99999b;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .black_font {
+      color: #2b2a2f;
+    }
+
+    .align_item {
+      display: flex;
+      align-items: flex-start;
+      gap: 4px;
+      height: 100%;
+    }
+    .button {
+      background-color: #2c2c6e;
+      color: white;
+      padding: 4.5px 60px 7.5px 60px;
+      .MuiButton-label {
+        text-transform: none;
+        font-family: "five-g-semi-bold";
+        color: white;
+      }
+    }
+    .paper {
+      height: 380px;
+    }
+  }
+  .form_textfield {
+    padding: 14px;
+    background: #f2f2f2;
+    height: 50px;
+  }
+}
+.accordion_container {
+  border: 1px solid #b1afaf;
+  border-radius: 5px;
+  .accordion_collapse {
+    border-radius: 7px;
+  }
+  .accordion_header {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 20px 0;
+    @media only screen and (max-width: 557px) {
+      padding: 15px 0;
+    }
+  }
+  .accordion_title {
+    font-family: "five-g-semi-bold";
+    color: #14395e;
+    @media only screen and (max-width: 557px) {
+      font-size: 0.8rem;
+    }
+  }
+  .rotate_icon {
+    transform: rotate(180deg);
+    transition: all 0.3s;
+  }
+  .normal_icon {
+    transition: all 0.3s;
+  }
+}
+.modal {
+  min-width: 340px;
+}
+.title {
+  font-family: "five-g-regular";
+  color: #14395e;
+  font-size: 1.3rem;
+}
+
+.valid_tick {
+  fill: #35b452;
+}
+.invalid_tick {
+  fill: #e3e3e3;
+}
+.align_sign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.field {
+  padding: 24px;
+  background: #f2f2f2;
+}
+.addAP_textfield {
+  background: white;
+  border-radius: 10px;
+  height: 42px;
+  &.MuiInputBase-root.Mui-disabled {
+    background: #ffffff52;
+  }
+}
+.content {
+  font-family: "five-g-regular";
+  color: #030303;
+}
+
+.loading {
+  width: 28px;
+  height: 28px;
+}
+.tuning {
+  width: 120px;
+  height: 120px;
+}

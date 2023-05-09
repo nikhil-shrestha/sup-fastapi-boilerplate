@@ -1,0 +1,160 @@
+/*         Different fonts    */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+@font-face {
+  font-family: five-g-light;
+  src: url("./fonts/Poppins-Light.ttf");
+}
+
+@font-face {
+  font-family: five-g-medium;
+  src: url("./fonts/Poppins-Medium.ttf");
+}
+
+@font-face {
+  font-family: five-g-regular;
+  src: url("./fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: five-g-semi-bold;
+  src: url("./fonts/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: five-g-bold;
+  src: url("./fonts/Poppins-Bold.ttf");
+}
+
+@media all and (min-width: 960px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+@media all and (max-width: 959px) and (min-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media all and (max-width: 599px) and (min-width: 320px) {
+  body {
+    font-size: 12px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: five-g-regular !important;
+  width: 100%;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  -webkit-print-color-adjust: exact;
+  color: #3952bb;
+  // background-color: #fafafc;
+  // background-color: #ffffff !important;
+  background-color: #f6f7ff !important;
+}
+
+.MuiDialog-root {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.individual-grid-five-g {
+  position: relative;
+
+  .each-widget-loading {
+    height: calc(100% - 40px);
+    width: calc(100% - 40px);
+    top: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    // background-color: rgba(0, 0, 0, 0.1);
+
+    img {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+    }
+  }
+}
+
+.login-main-container {
+  width: 100%;
+
+  .login_overlay_panel {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    background-color: #121111;
+    opacity: 0.75;
+    // background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+  }
+
+  .login_main_block {
+    position: fixed;
+    top: 20%;
+    left: 20%;
+    right: 20%;
+    bottom: 20%;
+    margin: 0px auto;
+    background: #fff;
+    z-index: 10;
+    width: 343px;
+    height: fit-content;
+    border-radius: 10px;
+    // border-top-left-radius: 0px;
+    // border-top-right-radius: 0px;
+  }
+
+  // # Phone
+  @media only screen and (max-width: 320px) {
+    .login_main_block {
+      position: absolute;
+      top: 20%;
+      left: 2%;
+      right: 20%;
+      bottom: 20%;
+      width: 310px;
+    }
+  }
+
+  // # Tablet
+  @media only screen and (min-width: 321px) and (max-width: 480px) {
+    .login_main_block {
+      position: fixed;
+      top: 20%;
+      left: 5%;
+      right: 20%;
+      bottom: 20%;
+      min-width: 310px;
+      width: 100%;
+      max-width: 370px;
+    }
+  }
+}
+
+#notification-wrapper {
+  z-index: 99999999;
+  position: absolute;
+}
+
+// .fgd-form, .fgm-inner-grid{
+//   .MuiPaper-root{
+//     box-shadow: none;
+//     background-color: white;
+//   }
+// }

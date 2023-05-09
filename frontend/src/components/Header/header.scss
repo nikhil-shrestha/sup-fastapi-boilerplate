@@ -1,0 +1,58 @@
+.app-header {
+  box-shadow: none !important;
+  justify-content: space-between !important;
+  .h-options {
+    a {
+      color: #d1e4f7;
+      text-decoration: none;
+      position: relative;
+
+      &:focus,
+      &:active {
+        outline: none;
+      }
+
+      span {
+        margin: 0 20px;
+      }
+
+      &.active {
+        color: white;
+        font-family: five-g-bold;
+
+        &:after {
+          width: 0;
+          height: 0;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-bottom: 10px solid white;
+          content: '';
+          position: absolute;
+          bottom: -25px;
+          left: calc(50% - 10px);
+        }
+      }
+    }
+  }
+
+  .app-name-header {
+    text-decoration: none;
+    color: white;
+
+    .app_logo_header {
+      height: 35px;
+    }
+  }
+
+  .sign-up-button {
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-family: 'five-g-bold';
+    border-radius: 20px;
+    background: #374dac;
+    padding: 8px 32px;
+  }
+  .header {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,84 @@
+.five-g-manage-edge-nodes{
+    padding: 30px;
+    min-height: 80%;
+    overflow-x: auto;
+
+    .fgm-inner-grid-left{
+        display: flex;
+        .fgm-inner-grid-li{
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            .fgmigr-img{
+                max-width: 90%;
+            }
+
+            .fgmigr-span{
+                font-family: five-g-bold;
+            }
+        }
+    }
+
+    .fgm-inner-grid-right{
+        background-color: white;
+        padding: 30px;
+
+        .each-form-sub{
+            margin-bottom: 20px;
+
+            .fen-form-head{
+                width: 100%;
+                border-bottom: 2px solid #869aad;
+            }
+    
+            .fdmen-each{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+    
+                .selections{
+                    max-width: 50%;
+                    width: 500px;
+                }
+    
+                > input {
+                    max-width: 50%;
+                    width: 500px;
+                    padding: 5px 10px;
+                    height: 35px;
+                    border: none;
+                    background-color: white;
+                    border: 1px solid #D0CCCC;
+                    border-radius: 5px;
+    
+    
+                    &:focus, &:active{
+                        outline: none;
+                    }
+                }
+                
+            }
+
+        }
+
+        .each-form-sub-submit{
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-end;
+            
+
+            span{
+                background-color: #2c2c6e;
+                cursor: pointer;
+                padding: 5px 20px;
+                color: white;
+                border-radius: 5px;
+            }
+        }
+
+    }
+    
+    
+}

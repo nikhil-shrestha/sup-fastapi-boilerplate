@@ -1,0 +1,37 @@
+.showOutput {
+  .MuiTypography-colorTextSecondary {
+    color: #2c2c6e;
+    font-size: 1rem;
+    font-family: 'five-g-semi-bold';
+  }
+
+  .fgm-util-each {
+    padding: 10px 0px;
+    border-bottom: 0.5px solid #b6defc;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .fgm-util-each-title {
+      color: #151515;
+      font-size: 0.8rem;
+      font-family: 'five-g-regular';
+    }
+
+    .fgm-util-each-value {
+      color: #151515;
+      font-family: 'five-g-medium';
+      font-size: 1rem;
+    }
+  }
+  .valid_tick {
+    fill: #35b452;
+    margin-left: 10px;
+  }
+  .stream {
+    fill: red;
+    margin-left: 10px;
+    border:1px solid red;
+    border-radius: 50%;
+  }
+}

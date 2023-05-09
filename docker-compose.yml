@@ -40,5 +40,18 @@ services:
     depends_on:
       - postgres_db
 
+  frontend:
+    image: index.docker.io/jclement/fastapi-deployment-sample-frontend:latest
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - backend
+
 volumes:
   data:

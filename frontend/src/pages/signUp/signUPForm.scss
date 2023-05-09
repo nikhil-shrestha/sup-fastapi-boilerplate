@@ -1,0 +1,86 @@
+.signup-inner-section {
+
+    .MuiInputLabel-filled {
+        z-index: 1;
+        transform: translate(0, 0) scale(1);
+        pointer-events: none;
+        color: #393838;
+        font-size: 1rem;
+        font-family: 'five-g-regular';
+    }
+
+    .MuiFilledInput-root {
+        background-color: #fff;
+    }
+
+    .MuiFilledInput-underline:before {
+        border-bottom: 1px solid #82B8ED !important;
+    }
+
+    .MuiButton-containedPrimary {
+        color: #fff;
+        background-color: #1F3BB3 !important;
+        padding: 10px 120px;
+        font-family: 'five-g-semi-bold';
+        text-transform: capitalize;
+        font-size: 1rem;
+    }
+
+    .sign-up-bottom-section {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 10px;
+
+        .remember-me-button {
+            padding: 5px 10px 5px 5px;
+            color: #1F3BB3;
+            font-size: 0.8rem;
+            line-height: 0.8rem;
+            font-family: 'five-g-regular';
+            cursor: pointer;
+        }
+
+        .forgot-password-button {
+            color: #1F3BB3;
+            font-size: 0.8rem;
+            line-height: 0.8rem;
+            font-family: 'five-g-regular';
+            padding: 5px 5px 5px 10px;
+            cursor: pointer;
+        }
+    }
+}
+
+.footer-sub-section {
+    position: absolute;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'five-g-regular';
+    color: #fff;
+    margin-left: 5px;
+    cursor: auto;
+
+    .sign-in-title {
+        cursor: pointer;
+        font-family: 'five-g-semi-bold';
+    }
+}
+
+.signin-signup-tabs {
+    .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+        color: #2C2C6E !important;
+        border-bottom: 2px solid #1F3BB3;
+        font-family: 'five-g-bold';
+        font-size: 0.9rem;
+    }
+
+    .css-19kzrtu {
+        padding: 0px !important;
+    }
+}

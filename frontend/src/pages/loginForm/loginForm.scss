@@ -1,0 +1,59 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  height: 94vh;
+  .form {
+    width: 352px;
+    > * {
+      margin-top: 20px;
+    }
+    .form_title {
+      border-radius: 5px;
+      padding: 5px 0;
+      text-align: center;
+      font-family: Poppins;
+      font-weight: bold;
+      font-size: 27px;
+      line-height: 46px;
+      color: #020202;
+      margin-bottom: 20px;
+    }
+  }
+  .forgot_password {
+    border-radius: 5px;
+    font-family: "five-g-regular";
+    padding: 5px 0;
+    text-align: center;
+    margin-top: 30px;
+    color: #557ebd;
+  }
+  .login-avatar {
+    background-color: #2c2c6e;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      width: 100px;
+      height: 60px;
+      fill: white;
+    }
+  }
+  .form_textfield {
+    // padding: 14px;
+    // background: #f2f2f2;
+    // height: 50px;
+    border-bottom: 0.5px solid #85b7eb;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    font-family: Poppins;
+    color: #a7a0a0;
+  }
+}

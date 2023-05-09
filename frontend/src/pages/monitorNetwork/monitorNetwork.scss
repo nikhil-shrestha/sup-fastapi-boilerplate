@@ -1,0 +1,452 @@
+.five-g-monitor{
+
+    .fgd-form{
+        position: relative;
+    }
+
+    .fgm-inner-grid{
+
+        .text-center{
+            text-align: center;
+        }
+
+        .ns-text{
+            background-color: #B5DEFC;
+            text-align: center;
+            margin: 40px 0;
+            border-radius: 5px;
+
+            span{
+                font: normal normal normal 15px/12px five-g-regular;
+                padding: 10px 0;
+                display: block;
+            }
+        }
+
+        .ns-alert{
+            display: flex;
+            justify-content: center;
+
+            > img{
+                height: 40px;
+                margin-right: 10px;
+            }
+
+            .nsa-error{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                > div {
+                    span{
+                        font-size: 0.8rem;
+                        margin-left: 5px;
+                        &:last-child{
+                            color: red;
+                        }
+                    }
+                }
+                
+            }
+
+            .hp-tick-icon{
+                fill: green;
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+
+    }
+
+    .network-topology{
+        background-color: #eaf4fd;
+    }
+
+    .network-topology-container{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+
+        .ntc-elements{
+            flex-grow: 1;
+            margin-left: 50px;
+
+            .ntce-main{
+                flex-grow: 1;
+                height: 200px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+
+                .ntce-elements-top, .ntce-elements-bottom{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    height: 100px;
+
+                    .ntce-each{
+                        width: calc(100% / 6);
+                        justify-content: center;
+                        display: flex;
+                        align-items: center;
+                        position: relative;
+                        color: black;
+                        text-decoration: none;
+
+                        &:active, &:focus{
+                            outline: none;
+                        }
+
+                        &::after{
+                            content: '';
+                            width: 2px;
+                            height: calc(50% - 20px);
+                            background-color: #6BBCF9;
+                            position: absolute;
+                            top: calc(50% + 20px);
+                        }
+
+                        &.bottom{
+                            &::after{
+                                top: 0;
+                            }
+                        }
+
+                        &.no-data{
+                            &::after{
+                                display: none;
+                            }
+                        }
+
+                        span{
+                            min-width: 100px;
+                            height: 40px;
+                            border: 2px solid #2755F4;
+                            border-radius: 14px;
+                            text-align: center;
+                            padding: 5px 10px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: white;
+                            z-index: 2;
+                            cursor: pointer;
+                            text-transform: uppercase;
+
+                            &:not(:first-child){
+                                position: absolute;
+                                margin-top: 9px;
+                                z-index: 1;
+                                margin-left: 5px;
+                            }
+
+                            &:nth-child(3){
+                                margin-top: 17px;
+                                margin-left: 12px;
+                            }
+                        }
+                        
+                    }
+                }
+
+                .ntc-network-line{
+                    position: absolute;
+                    width: calc(100% - 100% / 12);
+                    height: 2px;
+                    background-color: #6BBCF9;
+                    left: calc(100% / 6 - 100% / 12);
+                    top: 50%;
+                }
+            }
+
+            .ntc-spects{
+                margin-left: 50px;
+                display: flex;
+
+                .ntcs-split {
+                    float: left;
+                    display: table;
+                    width: 100px;
+                    height: 100px;
+                    text-align: center;
+
+                    &:first-child{
+                        border-right: 1px solid #8bcaf8;
+                    }
+
+                    .ntcs-each {
+                        width: 100%;
+                        height: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &:first-child{
+                            border-bottom: 1px solid #8bcaf8;
+                        }
+
+                        span{
+                            font-size: 2rem;
+                            font-family: five-g-medium;
+
+                            sub{
+                                font-size: 0.6rem;
+                                font-family: five-g-regular;
+                            }
+                        }
+                    }
+                }
+            }
+
+            
+        }
+
+        .ntc-network{
+
+            .ntcn-map{
+                background-color: #badbfc;
+                width: 200px;
+                height: 200px;
+                position: relative;
+
+                .ntc-network-line{
+                    position: absolute;
+                    width: calc(70%);
+                    height: 2px;
+                    background-color: #6BBCF9;
+                    left: 0;
+                    top: 50%;
+                }
+
+                .ntc-nl-gnbs{
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    width: 100px;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    margin-left: 50%;
+
+                    .ntcnlg-each{
+                        position: relative;
+
+                        // &:before{
+                        //     content: '';
+                        //     width: 100%;
+                        //     height: 100%;
+                        //     border: 1px dotted #2755F4;
+                        //     position: absolute;
+                        //     left: -100%;
+                        //     top: 50%;
+                        //     border-right: none;
+                        //     border-bottom: none;
+                        // }
+
+                        // &.down{
+                        //     &:before{
+                        //         content: '';
+                        //         width: 100%;
+                        //         height: 100%;
+                        //         border: 1px dotted #2755F4;
+                        //         position: absolute;
+                        //         left: -100%;
+                        //         top: -50%;
+                        //         border-right: none;
+                        //         border-top: none;
+                        //     }
+                        // }
+
+                        img{
+                            height: 40px;
+                        }
+
+                        span{
+                            position: absolute;
+                            bottom: -15px;
+                            display: flex;
+                            justify-content: center;
+                            color: black;
+                            font-size: 0.7rem;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+
+            .ntcn-devices {
+                margin-top: 20px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+
+                .ntcnd-image {
+                    display: flex;
+                    align-items: center;
+
+                    img{
+                        height: 25px;
+                    }
+                }
+
+                .ntcnd-count{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    margin-left: 10px;
+                    align-items: center;
+
+                    span{
+                        font-size: 0.8rem;
+
+                        &:last-child{
+                            font-size: 2rem;
+                            line-height: 1.8rem;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+
+    .network-overlay{
+        background-color: rgba(0,0,0,0.4);
+        position: absolute;
+        left: 0;
+        top:0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+    }
+
+    .ntce-element-details{
+        position: absolute;
+        width: 350px;
+        height: 155px;
+        display: flex;
+        z-index: 4;
+        background-color: white;
+        flex-direction: row;
+        margin-left: -175px;
+        margin-top: 30px;
+        padding: 15px;
+
+        &:after{
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid white;
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+        }
+
+        .ntceed-each{
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            text-decoration: none;
+
+
+            &:active, &:focus{
+                text-decoration: none;
+            }
+
+            > span{
+                min-width: 80px;
+                height: 40px;
+                border: 2px solid #2755F4;
+                border-radius: 14px;
+                text-align: center;
+                padding: 5px 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: white;
+                z-index: 2;
+                cursor: pointer;
+                text-transform: uppercase;
+                color: black;
+            }
+
+            .ntceed-icons{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                span{
+                    font-size: 0.8rem;
+                    margin-top: 5px;
+                    color: black;
+                }
+            }
+
+            img{
+                max-width: 100%;
+                max-height: 100%;
+                max-width: 60px;
+                z-index: 2;
+            }
+
+            &.server{
+
+                img{
+                    max-width: 30px;
+                }
+                
+            }
+
+            .ntceede-connector {
+                position: absolute;
+                width: 2px;
+                height: calc(50% + 10px);
+                background-color: #6BBCF9;
+                z-index: 1;
+            }
+        }
+
+        .ntce-ed-close{
+            position: absolute;
+            right: 5px;
+            top: 5px;
+        }
+    }
+
+    .fgm-util-each{
+        padding: 10px 20px;
+        border-bottom: 1px solid #b6defc;
+        display: flex;
+        justify-content: space-between;
+
+        span{
+            
+            &:first-child{
+                flex-grow: 1;
+            }
+
+            &:last-child{
+                width: 50px;
+                font-size: 1rem;
+                font-family: five-g-medium;
+                color: #1A317A;
+            }
+        }
+    }
+
+    .recharts-wrapper ~ .fgm-util-each{
+        &.fgmue-first{
+            margin-top: -130px;
+        }
+    }
+    
+}

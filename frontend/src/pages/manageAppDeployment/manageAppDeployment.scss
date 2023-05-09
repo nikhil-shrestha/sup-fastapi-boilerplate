@@ -1,0 +1,253 @@
+.monitoring-network-deploy-block {
+  padding-top: 15px;
+  .mnd-first-section {
+    .mls-bar-header {
+      color: #14395e;
+      font-size: 1rem;
+      font-family: 'five-g-regular';
+    }
+
+    .choose-an-option-below-box {
+      margin-top: 25px;
+
+      .choose-an-option-bullet-icon {
+        background: #39814e;
+        width: 10px;
+        padding: 6px;
+        border-radius: 10px;
+      }
+
+      .choose-an-option-below-title-box {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: flex-start;
+        align-items: center;
+        border: 1px solid #d6dbf7;
+        background: #ffffff;
+        color: #39814e;
+        font-size: 0.9rem;
+        padding: 10px;
+        border-radius: 10px;
+        font-family: 'five-g-regular';
+
+        .choose-an-option-below-title {
+          position: relative;
+          left: 8px;
+        }
+      }
+    }
+  }
+
+  .mnd-second-section {
+    .mls-bar-header {
+      color: #14395e;
+      font-size: 1rem;
+      font-family: 'five-g-regular';
+    }
+  }
+
+  .mnd-chart-block {
+    margin-top: 25px;
+    height: 309px;
+  }
+
+  .application-host-block {
+    background: #f0f2fc;
+    border-radius: 10px;
+    opacity: 1;
+    margin-top: 35px;
+    height: 250px;
+    padding: 0 25px;
+
+    .connect-button {
+      background-color: #1f3bb3;
+      text-transform: capitalize;
+      padding: 10px 60px;
+      font-size: 1rem;
+      font-family: 'five-g-semi-bold';
+    }
+
+    .devices-deploy-custom-column {
+      background: #efeffd;
+      padding: 10px 36px 10px 24px;
+      margin-top: 20px;
+      @media all and (max-width: 1300px) and (min-width: 320px) {
+        padding: 0px;
+      }
+    }
+
+    .devices-deploy-custom-column2 {
+      background: #efeffd;
+      padding: 10px 36px 10px 24px;
+      @media all and (max-width: 1300px) and (min-width: 320px) {
+        padding: 20px 0px;
+      }
+    }
+
+    .devices-deploy-custom-column3 {
+      background: #efeffd;
+      padding: 10px 36px 10px 24px;
+      @media all and (max-width: 1300px) and (min-width: 320px) {
+        padding: 0px;
+      }
+    }
+  }
+
+  .css-1wa3eu0-placeholder {
+    color: #030303 !important;
+  }
+
+  .css-1okebmr-indicatorSeparator {
+    display: none !important;
+  }
+
+  .css-tlfecz-indicatorContainer {
+    color: #76757b !important;
+  }
+
+  .css-1uccc91-singleValue {
+    color: #030303 !important;
+  }
+
+  .css-yk16xz-control {
+    border: 0.5px solid #76c0de !important;
+    border-radius: 5px !important;
+  }
+
+  .deploy-input-section {
+    margin-top: 65px;
+
+    .right-arrow-icon {
+      position: relative;
+      left: 5px;
+    }
+
+    @media all and (max-width: 960px) {
+      .right-arrow-icon {
+        position: relative;
+        transform: rotate(90deg);
+        margin: 10px 0;
+      }
+    }
+
+    .each-deploy-input-output-block {
+      padding: 0px;
+
+      .each-deploy-input-output-section {
+        min-height: 260px;
+        background: #fff;
+        border: 2px solid #6373eb;
+        border-radius: 60px;
+        opacity: 1;
+        padding: 20px 10px;
+
+        .each-deploy-input-output-title {
+          text-align: center;
+          color: #0f29eb;
+          font-family: 'five-g-regular';
+          font-size: 1.2rem;
+          line-height: 1.2rem;
+        }
+
+        .each-deploy-input-output-app-title {
+          color: #0f29eb;
+          font-size: 1rem;
+          line-height: 1rem;
+          text-align: center;
+          margin-top: 22px;
+        }
+
+        .each-deploy-input-output-app-icon {
+          text-align: center;
+
+          .applicationIcon {
+            height: 106px;
+            position: relative;
+            top: 24px;
+          }
+        }
+
+        .each-deploy-input-output-app-analyse {
+          margin-top: 40px;
+          text-align: center;
+
+          span {
+            color: #ffffff;
+            background: #6373eb;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-align: center;
+            padding: 5px 30px;
+          }
+        }
+
+        .each-deploy-input-output-main {
+          background: #f0f2fc;
+          margin-top: 34px;
+          border-radius: 20px;
+        }
+
+        .each-deploy-input-output-grid {
+          padding: 5px 12px;
+        }
+
+        .application-host-form {
+          font-size: 0.8rem;
+          line-height: 0.8rem;
+          padding-top: 6px;
+
+          span {
+            word-break: break-word;
+          }
+        }
+
+        .each-deploy-input-output-sub-section {
+          background: #f0f2fc;
+          margin-top: 28px;
+          border-radius: 20px;
+        }
+
+        .click-here-to-access-button {
+          color: #ffffff;
+          background: #6373eb;
+          border-radius: 10px;
+          font-size: 0.8rem;
+          padding: 10px 5px;
+          cursor: pointer;
+          text-align: center;
+
+          a {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  .deploy-input-wrapper {
+    @media all and (max-width: 960px) {
+      justify-content: center;
+    }
+  }
+
+  .mndb-add-to-network {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+
+    div {
+      color: #ffffff;
+      background: #6373eb;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-align: center;
+      padding: 5px 30px;
+    }
+  }
+}

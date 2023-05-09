@@ -1,0 +1,9 @@
+{
+    "dev" : true,
+    "appName" : "5G",
+    "api" : "http://localhost/five-g",
+    "host" : "http://localhost:3000",
+    "source" : "five-g",
+    "reduxkey": "five-g-store",
+    "sessionKey": "five-g-session"
+}

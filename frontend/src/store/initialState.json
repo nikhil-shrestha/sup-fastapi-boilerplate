@@ -1,0 +1,10 @@
+{
+    "isAuthenticated": true,
+    "config": {},
+    "toaster": {
+        "error": { "background": "#e48490", "text": "#FFFFFF" },
+        "success": { "background": "#77ab59", "text": "#FFFFFF" },
+        "duration": 2000
+    },
+    "login": false
+}

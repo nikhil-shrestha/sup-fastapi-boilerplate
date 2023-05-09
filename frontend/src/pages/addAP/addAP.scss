@@ -1,0 +1,64 @@
+.add_access_point {
+  .header {
+    background-color: #2c2c6e;
+    color: white;
+    .content {
+      color: white;
+    }
+  }
+  .title {
+    font-family: 'five-g-regular';
+    color: #14395e;
+    font-size: 1.3rem;
+  }
+  .sub_content {
+    font-family: 'five-g-light';
+  }
+  .dot {
+    background-color: #99999b;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .black_font {
+    color: #2b2a2f;
+  }
+
+  .align_item {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    height: 100%;
+  }
+  .button {
+    background-color: #2c2c6e;
+    color: white;
+    padding: 4.5px 60px 7.5px 60px;
+    .MuiButton-label {
+      text-transform: none;
+      font-family: 'five-g-semi-bold';
+      color: white;
+    }
+  }
+  .paper {
+    height: 380px;
+  }
+  .align_sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  .form_textfield {
+    padding: 14px;
+    background: #f2f2f2;
+    height: 50px;
+  }
+}
+
+.btnWrapper {
+  padding-top: 43px;
+  @media only screen and (max-width: 1309px) {
+    padding-top: 0px;
+  }
+}

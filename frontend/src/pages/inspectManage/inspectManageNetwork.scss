@@ -1,0 +1,266 @@
+.five-g-inspect-container {
+  .inspect-left-sidebar-main {
+    height: 100%;
+
+    .inspect-left-sidebar-section {
+      .inspect-left-sidebar-block {
+        .droppable-main-section {
+          overflow-y: scroll;
+          max-height: 710px;
+        }
+      }
+
+      .makeStyles-widgetBody-41 {
+        padding: 8px;
+      }
+
+      .makeStyles-widgetHeader-39 {
+        padding: 5px !important;
+      }
+
+      .inspect-left-bar-title {
+        border-bottom: 2px solid #efeff0;
+        padding-bottom: 10px;
+        padding-top: 8px;
+        margin-bottom: 20px;
+        color: #121212;
+        font-size: 0.8rem;
+        font-family: 'five-g-semi-bold';
+        line-height: 0.8rem;
+        padding-left: 10px;
+      }
+
+      .logs-list-section {
+        background: #f0f2fc;
+        border-radius: 10px;
+        opacity: 1;
+        padding: 10px;
+        margin: 4px 0px;
+        position: relative;
+
+        .logs-list-name {
+          // color: #2F2F2F;
+          font-size: 0.88rem;
+          font-family: 'five-g-regular';
+          text-transform: uppercase;
+        }
+
+        .logs-list-drag-icon {
+          position: absolute;
+          padding: 0px 15px;
+          right: 0px;
+        }
+      }
+    }
+  }
+
+  .custom-right-grid-container {
+    .custom-right-grid {
+      width: 100% !important;
+      float: none;
+    }
+    @media all and (min-width: 768px) {
+      .custom-right-grid {
+        width: calc(50% - 10px) !important;
+        float: left;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        background: none;
+      }
+
+      .makeStyles-widgetHeader-39 {
+        display: none;
+      }
+
+      .makeStyles-widgetBody-41 {
+        padding: 0px;
+      }
+
+      .css-1ujnqem-MuiTabs-root {
+        margin-top: -5px;
+
+        .css-jpln7h-MuiTabs-scroller {
+          margin-top: 5px;
+          padding-left: 15px;
+          border: 1px solid #e7e7e7;
+        }
+
+        .css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+          color: #626364 !important;
+          margin-top: 15px;
+          min-height: 0px;
+          font-size: 0.8rem;
+          line-height: 0.8rem;
+          font-family: 'five-g-medium';
+          margin-right: 5px;
+          padding: 6px 15px;
+          margin-top: 8px;
+        }
+
+        .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+          color: #fff !important;
+          border-radius: 10px;
+          background: #1f3bb3 !important;
+          border: none;
+          font-family: 'five-g-medium';
+          font-size: 0.8rem;
+        }
+
+        .css-1aquho2-MuiTabs-indicator {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .inspect-manage-right-container {
+    .each-tab-section {
+      box-shadow: 0px 3px 8px #0000000d;
+      border: 1px solid #cecbcb;
+      min-width: 250px;
+      min-height: 350px;
+      background: #fff;
+      padding: 5px;
+      border-top: none;
+      position: relative;
+
+      .each-droppable-item {
+        background: #f0f2fc;
+        border-radius: 10px;
+        opacity: 1;
+        padding: 10px;
+        margin: 4px 0px;
+        position: absolute;
+        width: calc(100% - 10px);
+        height: calc(100% - 20px);
+
+        .logs-list-name {
+          // color: #2F2F2F;
+          font-size: 0.88rem;
+          font-family: 'five-g-regular';
+          text-transform: uppercase;
+        }
+
+        .logs-list-drag-icon {
+          position: absolute;
+          padding: 0px 15px;
+          right: 0px;
+        }
+
+        .lln-details {
+          width: 100%;
+          margin-top: 10px;
+          height: calc(100% - 30px);
+          background-color: white;
+          overflow-y: auto;
+
+          span {
+            display: block;
+            float: left;
+            width: calc(100% - 20px);
+            margin: 0 10px;
+          }
+
+          .llnd-loading {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+              height: 30px;
+            }
+          }
+
+          .fdg-packets-container {
+            display: flex;
+            flex-direction: column;
+            min-width: 700px;
+
+            .fdgpc-head,
+            .fdgpc-each {
+              display: flex;
+              flex-direction: row;
+              flex-grow: 1;
+              flex-shrink: 1;
+              flex-basis: 0;
+              justify-content: space-between;
+
+              .fdgpce-row {
+                min-height: 20px;
+                background-color: #e8ebfb;
+                margin: 1px;
+                width: 100%;
+                text-align: center;
+                padding: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow-wrap: anywhere;
+              }
+            }
+
+            .fdgpc-head {
+              .fdgpce-row {
+                background-color: white;
+                color: #1f3bb3;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .custom-inspect-grid {
+      // min-height: 400px;
+
+      .makeStyles-widgetHeader-39 {
+        padding: 5px !important;
+      }
+
+      .css-1ujnqem-MuiTabs-root {
+        margin-top: -5px;
+
+        .css-jpln7h-MuiTabs-scroller {
+          margin-top: 5px;
+        }
+
+        .css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+          color: #626364 !important;
+          margin-top: 15px;
+          min-height: 0px;
+          font-size: 0.8rem;
+          line-height: 0.8rem;
+          font-family: 'five-g-medium';
+          margin-right: 5px;
+          padding: 6px 15px;
+          margin-top: 8px;
+        }
+
+        .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+          color: #fff !important;
+          border-radius: 10px;
+          background: #1f3bb3 !important;
+          border: none;
+          font-family: 'five-g-medium';
+          font-size: 0.8rem;
+        }
+
+        .css-1aquho2-MuiTabs-indicator {
+          display: none;
+        }
+      }
+    }
+  }
+
+  > .MuiGrid-root {
+    margin-top: 20px;
+  }
+
+  .fgm-inner-grid {
+    .text-center {
+      text-align: center;
+    }
+  }
+}

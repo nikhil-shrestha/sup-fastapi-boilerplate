@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.fgd-top-head {
+  width: calc(100% + 48px + 60px);
+  height: 45px;
+  background-color: white;
+  margin-left: calc(-24px - 30px);
+  position: fixed;
+  box-shadow: 0px 2px 4px #00000029;
+  display: flex;
+  align-items: center;
+  color: #14395e;
+  font-family: "five-g-bold";
+  z-index: 99;
+  position: fixed;
+  top: 66px;
+
+  span {
+    font-family: Poppins;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 35px;
+    letter-spacing: 0px;
+    color: #2c2c6e;
+  }
+}
+
+.sub-header {
+  margin: 100px 0 18px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    font-family: Poppins, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 22px;
+    line-height: 33px;
+    color: #030303;
+  }
+
+  h4 {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+  button {
+    max-width: 139px;
+    padding: 11.5px 10px;
+    font-size: 18px;
+    line-height: 27px;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    text-transform: capitalize;
+    color: #1f3bb3;
+    svg {
+      color: #1f3bb3;
+    }
+  }
+}
+
+.form-wrapper {
+  border: 0.5px solid #b1afaf;
+  border-radius: 5px;
+  width: 100%;
+  padding: 33px 34px;
+
+  h5 {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 27px;
+    color: #030303;
+    margin-bottom: 7px;
+  }
+
+  .input-field {
+    width: 100%;
+  }
+
+  button {
+    background: #1f3bb3 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 27px;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    height: 50px;
+    text-transform: capitalize;
+    width: 316px;
+    padding: 13px 0 12px 0;
+
+    svg {
+      color: #ffffff;
+    }
+  }
+
+  button:hover {
+    background: #3833df;
+  }
+}

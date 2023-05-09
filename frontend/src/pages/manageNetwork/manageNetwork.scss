@@ -1,0 +1,390 @@
+.five-g-manage-container {
+  @media screen and (min-width: 900px) {
+    padding: 0 20px;
+  }
+
+  .choose-an-option-below-box {
+    margin-top: 25px;
+    border: 1px solid #d6dbf7;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .choose-an-option-bullet-icon {
+    background: #39814e;
+    width: 10px;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  .choose-an-option-below-title-box {
+    color: #39814e;
+    font-size: 0.9rem;
+    font-family: "five-g-regular";
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .manage-network-title {
+    color: #2c2c6e;
+    font-family: "five-g-semi-bold";
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+    padding: 15px 0px;
+  }
+
+  > .MuiGrid-root {
+    margin-top: 20px;
+  }
+
+  .makeStyles-widgetHeader-39 {
+    display: none;
+  }
+
+  .fgd-form {
+    position: relative;
+  }
+
+  .fgm-inner-grid {
+    .text-center {
+      text-align: center;
+    }
+
+    .core-data {
+      .cd-main {
+        padding: 20px 0;
+
+        .cd-each {
+          text-align: center;
+
+          .cd-main-bar-block {
+            background-color: #cccccc;
+            .bar {
+              border: 0.08em solid #366672;
+            }
+          }
+          .cd-main-bar-block:after {
+            background-color: #fff;
+          }
+
+          .c100 > span {
+            color: #366672;
+          }
+
+          > span {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+
+    .ran-stats {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      margin: 25px 0 20px 0px;
+      padding: 0px 10px;
+
+      .rans-each {
+        display: flex;
+        flex-direction: column;
+        margin-right: 14px;
+        width: 115px;
+
+        span {
+          font-size: 0.8rem;
+          color: #7c3bb1;
+          &:first-child {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+  }
+
+  .app-depolyment-active {
+    color: #2755f4 !important;
+    font-family: "five-g-semi-bold" !important;
+  }
+
+  .app-depolyment-restore {
+    color: #5d5d5d !important;
+    font-family: "five-g-medium" !important;
+  }
+
+  .manage-options {
+    color: #366672;
+    position: relative;
+    background-color: #eaf2f4;
+    font-family: "five-g-medium";
+    margin-bottom: 10px;
+    padding: 10px 10px 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: left;
+    width: 100%;
+    font-size: 0.8rem;
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+      text-decoration: none;
+    }
+
+    img {
+      position: absolute;
+      left: 14px;
+      height: 10px;
+      top: 16px;
+    }
+
+    span {
+      font-size: 1rem;
+      line-height: 1rem;
+    }
+  }
+
+  .manage-access-points-options {
+    color: #7e3eb2;
+    position: relative;
+    background-color: #eee8f3;
+    font-family: "five-g-medium";
+    margin-bottom: 10px;
+    padding: 10px 10px 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: left;
+    width: 100%;
+    font-size: 0.8rem;
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+      text-decoration: none;
+    }
+
+    img {
+      position: absolute;
+      left: 14px;
+      height: 10px;
+      top: 16px;
+    }
+
+    span {
+      font-size: 1rem;
+      line-height: 1rem;
+    }
+  }
+
+  .no-actions {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .rs-timeline-item {
+    .rs-timeline-item-dot::before {
+      // border: 1px solid #2755F4;
+      background-color: none;
+    }
+    .radialBlueIcon {
+      position: relative;
+      right: 24px;
+      top: 20px;
+    }
+
+    .rs-timeline-item-dot {
+      position: absolute;
+      top: 25px;
+    }
+
+    .rs-timeline-item-content {
+      p {
+        color: #222222;
+        font-family: "five-g-medium";
+      }
+      > p:first-child {
+        color: #a09d9d;
+        font-family: "five-g-regular";
+      }
+      > p:nth-child(2) {
+        color: #a09d9d;
+        font-family: "five-g-regular";
+      }
+      > p:nth-child(4) {
+        color: #3f67f3;
+        font-family: "five-g-regular";
+      }
+    }
+  }
+}
+
+#add-subscriber-form {
+  min-width: 80%;
+
+  .adf-close-icon {
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+  }
+
+  .MuiPaper-root {
+    min-width: 50%;
+
+    .asf-container {
+      .asf-each {
+        display: flex;
+        flex-direction: column;
+
+        span {
+          color: #7c7a7a;
+          font-family: five-g-light;
+        }
+
+        input {
+          border: 1px solid #e2e2e6;
+          background-color: #e2e2e6;
+          padding: 5px 5px;
+          border-radius: 5px;
+
+          &:focus,
+          &:active {
+            outline: none;
+          }
+        }
+
+        &.ns-error {
+          text-align: center;
+
+          span {
+            color: red;
+          }
+        }
+
+        &.ns_operation_codes {
+          .MuiFormControl-root {
+            width: 100%;
+            background-color: #e2e2e6;
+            padding: 0 5px;
+
+            .MuiInput-root {
+              &:before {
+                content: none;
+              }
+              &:after {
+                content: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .MuiDialogActions-root {
+    justify-content: center;
+    margin: 10px 0;
+
+    button {
+      background-color: #1f3bb3;
+      color: white;
+      padding: 2px 40px;
+    }
+  }
+
+  .call_under_progress_icon {
+    height: 20px;
+    margin-left: 20px;
+  }
+}
+
+#subscriber-list {
+  min-width: 80%;
+
+  .sl-close-icon {
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+  }
+
+  .MuiPaper-root {
+    min-width: 80%;
+
+    .sl-container {
+      .slc-each {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        > * {
+          flex-grow: 1;
+          flex-basis: 0;
+        }
+
+        .slce-action {
+          width: 70px;
+          flex: none;
+
+          .slca-option {
+            color: #437fec;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .call_under_progress_icon {
+    height: 20px;
+    margin-left: 20px;
+  }
+}
+
+.traffic-chart-history {
+  margin-top: 15px;
+  .traffic-chart-history-box {
+    padding: 12px 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+
+    .traffic-chart-history-value {
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      font-family: "five-g-regular";
+    }
+
+    .traffic-chart-history-label {
+      margin-left: 12px;
+      font-size: 0.9rem;
+      line-height: 0.9rem;
+      font-family: "five-g-regular";
+    }
+  }
+}
+
+.traffic-chart-section {
+  padding: 0px 16px 16px 0px !important;
+  margin-top: -15px;
+
+  .traffic-chart-block {
+    width: 154px;
+    height: 154px;
+  }
+}
+
+.manage-options-sub-block {
+  .map-sub-block-title {
+    color: #707070;
+    font-size: 1.1rem;
+    font-family: "five-g-regular";
+    padding: 14px 0px;
+  }
+}

@@ -1,0 +1,14 @@
+.button {
+  background-color: #2c2c6e;
+  color: white;
+  padding: 4.5px 20px 7.5px 20px;
+  .MuiButton-label {
+    text-transform: none;
+    font-family: 'five-g-semi-bold';
+    color: white;
+  }
+}
+.button.MuiButton-root {
+  background-color: #2c2c6e;
+  text-decoration: none;
+}

@@ -1,0 +1,34 @@
+.mainWrapper {
+  height: 85vh;
+  background-image: url("/images/new_flow_images/home_banner.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right bottom;
+  @media only screen and (max-width: 960px) {
+    background-image: none;
+  }
+}
+
+.input_group {
+  label {
+    font-size: 16px;
+    font-family: Poppins;
+    line-height: 25px;
+    color: #515151;
+  }
+
+  input {
+    border: none;
+    outline: 0;
+    border-bottom: 0.5px solid #85b7eb;
+    width: 100%;
+    margin-top: 14px;
+    padding-left: 0px;
+    border-radius: 0px;
+    background: transparent;
+  }
+
+  input:focus {
+    background: transparent;
+  }
+}
