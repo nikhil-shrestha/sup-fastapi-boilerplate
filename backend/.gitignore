@@ -27,6 +27,3 @@ archive.zip
 #static file/folder
 /static/*
 !/static/.gitkeep
-
-
-data/
