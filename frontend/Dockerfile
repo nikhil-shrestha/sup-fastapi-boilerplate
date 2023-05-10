@@ -1,10 +1,15 @@
-FROM node:14.14.0-alpine
+FROM node:16.20.0-alpine
+ARG NPM_TOKEN
 
 WORKDIR /app
 
 COPY ./package.json ./
 
-RUN npm i
+RUN apk add --no-cache --virtual .build-deps make gcc g++ python3 && \
+    echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc && \
+    npm install --legacy-peer-deps && \
+    rm -f .npmrc && \
+    apk del .build-deps
 
 COPY . .
 
