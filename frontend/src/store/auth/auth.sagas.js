@@ -52,10 +52,14 @@ export function* onSigninAsync({ payload: { formData, router } }) {
     headers: { "content-type": "multipart/form-data" },
   };
   try {
-    const { data } = yield axiosConfig.post("/auth/login", null, {
-      params: {
-        ...formData,
-      },
+    const form = new FormData();
+    form.append("username", formData.username);
+    form.append("password", formData.password);
+
+    const { data } = yield axiosConfig({
+      method: "post",
+      url: `/auth/login`,
+      data: form,
     });
 
     localStorage.setItem("access_token", data?.access_token);

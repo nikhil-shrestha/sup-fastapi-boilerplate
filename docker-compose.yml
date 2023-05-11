@@ -34,8 +34,9 @@ services:
       - .env
     volumes:
       - ./backend:/app
+      - ./frontend/public/assets/uploads:/app/static
     ports:
-      - '${PORT}:8000'
+      - '8000:8000'
     depends_on:
       - postgres_db
 

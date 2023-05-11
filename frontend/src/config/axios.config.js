@@ -1,7 +1,7 @@
 // First we need to import axios.js
 import axios from "axios";
 
-export const baseURL = "http://45.112.28.125:3001";
+export const baseURL = "/api/v1";
 
 // Next we make an 'instance' of it
 const instance = axios.create({
